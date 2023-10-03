@@ -1,0 +1,2575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0101)file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/invform.htm -->
+<html>
+
+<head>
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"> -->
+
+  <title>Invio formazione</title>
+  <script src="./invform-with-players_files/fcmVariabili.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmLegaDati.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmSerieAFunzioni.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmSerieADati.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmGenerale.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmUtils.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmTabelle.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmCompetizioniFunzioni.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmCompetizioniDati.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmCalendarioFunzioni.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmCalendarioDati.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmFantasquadreFunzioni.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmFantasquadreDati.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmFormazioniFunzioni.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmInvioFormazioneFunzioni.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmInvioFormazioneDati.js" type="text/javascript"></script>
+  <script src="./invform-with-players_files/fcmVariabiliJdPI.js" type="text/javascript"></script>
+  <!-- <link href="./invform-with-players_files/fcm.css" rel="stylesheet" type="text/css"> -->
+  <script src="./custom-fantacalcio-mobile.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    window.addEventListener("DOMContentLoaded", function () {
+      onLoad();
+    });
+  </script>
+  <!-- this is broken css in iphone-->
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /** primary **/
+      --ion-color-primary: #000000;
+      --ion-color-primary-contrast: #ffffff;
+      --ion-color-primary-shade: #333333;
+      --ion-color-primary-tint: #1a1a1a;
+
+      /** secondary **/
+      --ion-color-secondary: #ffffff;
+      --ion-color-secondary-contrast: #000000;
+      --ion-color-secondary-shade: #e6e6e6;
+      --ion-color-secondary-tint: #ffffff;
+
+      /** tertiary **/
+      --ion-color-tertiary: #f9c922;
+      --ion-color-tertiary-contrast: #000000;
+      --ion-color-tertiary-shade: #d6b31d;
+      --ion-color-tertiary-tint: #fac736;
+
+      /** success **/
+      --ion-color-success: #00ff00;
+      --ion-color-success-contrast: #000000;
+      --ion-color-success-shade: #00cc00;
+      --ion-color-success-tint: #33ff33;
+
+      /** warning **/
+      --ion-color-warning: #ffff00;
+      --ion-color-warning-contrast: #000000;
+      --ion-color-warning-shade: #e6e600;
+      --ion-color-warning-tint: #ffff33;
+
+      /** danger **/
+      --ion-color-danger: #ff0000;
+      --ion-color-danger-contrast: #ffffff;
+      --ion-color-danger-shade: #cc0000;
+      --ion-color-danger-tint: #ff3333;
+
+      /** dark **/
+      --ion-color-dark: #000000;
+      --ion-color-dark-contrast: #ffffff;
+      --ion-color-dark-shade: #1a1a1a;
+      --ion-color-dark-tint: #333333;
+
+      /** medium **/
+      --ion-color-medium: #ffffff;
+      --ion-color-medium-contrast: #000000;
+      --ion-color-medium-shade: #e6e6e6;
+      --ion-color-medium-tint: #ffffff;
+
+      /** light **/
+      --ion-color-light: #ffffff;
+      --ion-color-light-contrast: #000000;
+      --ion-color-light-shade: #e6e6e6;
+      --ion-color-light-tint: #ffffff;
+    }
+
+
+    @media (prefers-color-scheme: dark) {
+      /*
+    * Dark Colors
+    * -------------------------------------------
+    */
+
+      /* body {
+        --ion-color-primary: #428cff;
+        --ion-color-primary-rgb: 66, 140, 255;
+        --ion-color-primary-contrast: #ffffff;
+        --ion-color-primary-contrast-rgb: 255, 255, 255;
+        --ion-color-primary-shade: #3a7be0;
+        --ion-color-primary-tint: #5598ff;
+
+        --ion-color-secondary: #50c8ff;
+        --ion-color-secondary-rgb: 80, 200, 255;
+        --ion-color-secondary-contrast: #ffffff;
+        --ion-color-secondary-contrast-rgb: 255, 255, 255;
+        --ion-color-secondary-shade: #46b0e0;
+        --ion-color-secondary-tint: #62ceff;
+
+        --ion-color-tertiary: #6a64ff;
+        --ion-color-tertiary-rgb: 106, 100, 255;
+        --ion-color-tertiary-contrast: #ffffff;
+        --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+        --ion-color-tertiary-shade: #5d58e0;
+        --ion-color-tertiary-tint: #7974ff;
+
+        --ion-color-success: #2fdf75;
+        --ion-color-success-rgb: 47, 223, 117;
+        --ion-color-success-contrast: #000000;
+        --ion-color-success-contrast-rgb: 0, 0, 0;
+        --ion-color-success-shade: #29c467;
+        --ion-color-success-tint: #44e283;
+
+        --ion-color-warning: #ffd534;
+        --ion-color-warning-rgb: 255, 213, 52;
+        --ion-color-warning-contrast: #000000;
+        --ion-color-warning-contrast-rgb: 0, 0, 0;
+        --ion-color-warning-shade: #e0bb2e;
+        --ion-color-warning-tint: #ffd948;
+
+        --ion-color-danger: #ff4961;
+        --ion-color-danger-rgb: 255, 73, 97;
+        --ion-color-danger-contrast: #ffffff;
+        --ion-color-danger-contrast-rgb: 255, 255, 255;
+        --ion-color-danger-shade: #e04055;
+        --ion-color-danger-tint: #ff5b71;
+
+        --ion-color-dark: #f4f5f8;
+        --ion-color-dark-rgb: 244, 245, 248;
+        --ion-color-dark-contrast: #000000;
+        --ion-color-dark-contrast-rgb: 0, 0, 0;
+        --ion-color-dark-shade: #d7d8da;
+        --ion-color-dark-tint: #f5f6f9;
+
+        --ion-color-medium: #989aa2;
+        --ion-color-medium-rgb: 152, 154, 162;
+        --ion-color-medium-contrast: #000000;
+        --ion-color-medium-contrast-rgb: 0, 0, 0;
+        --ion-color-medium-shade: #86888f;
+        --ion-color-medium-tint: #a2a4ab;
+
+        --ion-color-light: #222428;
+        --ion-color-light-rgb: 34, 36, 40;
+        --ion-color-light-contrast: #ffffff;
+        --ion-color-light-contrast-rgb: 255, 255, 255;
+        --ion-color-light-shade: #1e2023;
+        --ion-color-light-tint: #383a3e;
+      } */
+
+      /*
+    * iOS Dark Theme
+    * -------------------------------------------
+    */
+
+      /* .ios body {
+        --ion-background-color: #000000;
+        --ion-background-color-rgb: 0, 0, 0;
+
+        --ion-text-color: #ffffff;
+        --ion-text-color-rgb: 255, 255, 255;
+
+        --ion-color-step-50: #0d0d0d;
+        --ion-color-step-100: #1a1a1a;
+        --ion-color-step-150: #262626;
+        --ion-color-step-200: #333333;
+        --ion-color-step-250: #404040;
+        --ion-color-step-300: #4d4d4d;
+        --ion-color-step-350: #595959;
+        --ion-color-step-400: #666666;
+        --ion-color-step-450: #737373;
+        --ion-color-step-500: #808080;
+        --ion-color-step-550: #8c8c8c;
+        --ion-color-step-600: #999999;
+        --ion-color-step-650: #a6a6a6;
+        --ion-color-step-700: #b3b3b3;
+        --ion-color-step-750: #bfbfbf;
+        --ion-color-step-800: #cccccc;
+        --ion-color-step-850: #d9d9d9;
+        --ion-color-step-900: #e6e6e6;
+        --ion-color-step-950: #f2f2f2;
+
+        --ion-item-background: #000000;
+
+        --ion-card-background: #1c1c1d;
+      } */
+
+      /* .ios ion-modal {
+        --ion-background-color: var(--ion-color-step-100);
+        --ion-toolbar-background: var(--ion-color-step-150);
+        --ion-toolbar-border-color: var(--ion-color-step-250);
+      } */
+
+
+      /*
+    * Material Design Dark Theme
+    * -------------------------------------------
+    */
+
+      /* .md body {
+        --ion-background-color: #121212;
+        --ion-background-color-rgb: 18, 18, 18;
+
+        --ion-text-color: #ffffff;
+        --ion-text-color-rgb: 255, 255, 255;
+
+        --ion-border-color: #222222;
+
+        --ion-color-step-50: #1e1e1e;
+        --ion-color-step-100: #2a2a2a;
+        --ion-color-step-150: #363636;
+        --ion-color-step-200: #414141;
+        --ion-color-step-250: #4d4d4d;
+        --ion-color-step-300: #595959;
+        --ion-color-step-350: #656565;
+        --ion-color-step-400: #717171;
+        --ion-color-step-450: #7d7d7d;
+        --ion-color-step-500: #898989;
+        --ion-color-step-550: #949494;
+        --ion-color-step-600: #a0a0a0;
+        --ion-color-step-650: #acacac;
+        --ion-color-step-700: #b8b8b8;
+        --ion-color-step-750: #c4c4c4;
+        --ion-color-step-800: #d0d0d0;
+        --ion-color-step-850: #dbdbdb;
+        --ion-color-step-900: #e7e7e7;
+        --ion-color-step-950: #f3f3f3;
+
+        --ion-item-background: #1e1e1e;
+
+        --ion-toolbar-background: #1f1f1f;
+
+        --ion-tab-bar-background: #1f1f1f;
+
+        --ion-card-background: #1e1e1e;
+      } */
+    }
+
+    ion-header ion-menu-button {
+      --color: white;
+    }
+
+    ion-header ion-toolbar {
+      color: white;
+      --background: var(--ion-color-primary);
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style data-styles="">
+    ion-menu-button,
+    ion-menu,
+    ion-menu-toggle,
+    ion-fab-button,
+    ion-fab,
+    ion-fab-list,
+    ion-refresher-content,
+    ion-refresher,
+    ion-back-button,
+    ion-toast,
+    ion-card,
+    ion-card-content,
+    ion-card-header,
+    ion-card-subtitle,
+    ion-card-title,
+    ion-item-option,
+    ion-item-options,
+    ion-item-sliding,
+    ion-accordion,
+    ion-accordion-group,
+    ion-infinite-scroll-content,
+    ion-infinite-scroll,
+    ion-reorder,
+    ion-reorder-group,
+    ion-segment-button,
+    ion-segment,
+    ion-tab-button,
+    ion-tab-bar,
+    ion-chip,
+    ion-datetime-button,
+    ion-input,
+    ion-searchbar,
+    ion-toggle,
+    ion-nav,
+    ion-nav-link,
+    ion-textarea,
+    ion-backdrop,
+    ion-loading,
+    ion-breadcrumb,
+    ion-breadcrumbs,
+    ion-modal,
+    ion-route,
+    ion-route-redirect,
+    ion-router,
+    ion-router-link,
+    ion-avatar,
+    ion-badge,
+    ion-thumbnail,
+    ion-col,
+    ion-grid,
+    ion-row,
+    ion-tab,
+    ion-tabs,
+    ion-img,
+    ion-progress-bar,
+    ion-range,
+    ion-split-pane,
+    ion-text,
+    ion-item-divider,
+    ion-item-group,
+    ion-skeleton-text,
+    ion-list,
+    ion-list-header,
+    ion-item,
+    ion-label,
+    ion-note,
+    ion-select,
+    ion-select-option,
+    ion-select-popover,
+    ion-picker-internal,
+    ion-datetime,
+    ion-picker,
+    ion-picker-column,
+    ion-radio,
+    ion-radio-group,
+    ion-ripple-effect,
+    ion-button,
+    ion-icon,
+    ion-action-sheet,
+    ion-alert,
+    ion-app,
+    ion-content,
+    ion-footer,
+    ion-header,
+    ion-router-outlet,
+    ion-title,
+    ion-toolbar,
+    ion-buttons,
+    ion-picker-column-internal,
+    ion-popover,
+    ion-checkbox,
+    ion-spinner {
+      visibility: hidden
+    }
+
+    .hydrated {
+      visibility: inherit
+    }
+  </style>
+  <style>
+    html.plt-mobile ion-app {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    html.plt-mobile ion-app [contenteditable] {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text
+    }
+
+    ion-app.force-statusbar-padding {
+      --ion-safe-area-top: 20px
+    }
+  </style>
+  <style>
+    .sc-ion-alert-ios-h {
+      --min-width: 250px;
+      --width: auto;
+      --min-height: auto;
+      --height: auto;
+      --max-height: 90%;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: -ms-flexbox;
+      display: flex;
+      position: absolute;
+      -ms-flex-align: center;
+      align-items: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      outline: none;
+      font-family: var(--ion-font-family, inherit);
+      contain: strict;
+      -ms-touch-action: none;
+      touch-action: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      z-index: 1001
+    }
+
+    .overlay-hidden.sc-ion-alert-ios-h {
+      display: none
+    }
+
+    .alert-top.sc-ion-alert-ios-h {
+      padding-top: 50px;
+      -ms-flex-align: start;
+      align-items: flex-start
+    }
+
+    .alert-wrapper.sc-ion-alert-ios {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      width: var(--width);
+      min-width: var(--min-width);
+      max-width: var(--max-width);
+      height: var(--height);
+      min-height: var(--min-height);
+      max-height: var(--max-height);
+      background: var(--background);
+      contain: content;
+      opacity: 0;
+      z-index: 10
+    }
+
+    .alert-title.sc-ion-alert-ios {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0
+    }
+
+    .alert-sub-title.sc-ion-alert-ios {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 5px;
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-weight: normal
+    }
+
+    .alert-message.sc-ion-alert-ios {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-overflow-scrolling: touch;
+      overflow-y: auto;
+      overscroll-behavior-y: contain
+    }
+
+    .alert-checkbox-group.sc-ion-alert-ios::-webkit-scrollbar,
+    .alert-radio-group.sc-ion-alert-ios::-webkit-scrollbar,
+    .alert-message.sc-ion-alert-ios::-webkit-scrollbar {
+      display: none
+    }
+
+    .alert-input.sc-ion-alert-ios {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      width: 100%;
+      border: 0;
+      background: inherit;
+      font: inherit;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box
+    }
+
+    .alert-button-group.sc-ion-alert-ios {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      width: 100%
+    }
+
+    .alert-button-group-vertical.sc-ion-alert-ios {
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap
+    }
+
+    .alert-button.sc-ion-alert-ios {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      display: block;
+      border: 0;
+      font-size: 14px;
+      line-height: 20px;
+      z-index: 0
+    }
+
+    .alert-button.ion-focused.sc-ion-alert-ios,
+    .alert-tappable.ion-focused.sc-ion-alert-ios {
+      background: var(--ion-color-step-100, #e6e6e6)
+    }
+
+    .alert-button-inner.sc-ion-alert-ios {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-flow: row nowrap;
+      flex-flow: row nowrap;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      -ms-flex-align: center;
+      align-items: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      min-height: inherit
+    }
+
+    .alert-input-disabled.sc-ion-alert-ios,
+    .alert-checkbox-button-disabled.sc-ion-alert-ios .alert-button-inner.sc-ion-alert-ios,
+    .alert-radio-button-disabled.sc-ion-alert-ios .alert-button-inner.sc-ion-alert-ios {
+      cursor: default;
+      opacity: 0.5;
+      pointer-events: none
+    }
+
+    .alert-tappable.sc-ion-alert-ios {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      display: -ms-flexbox;
+      display: flex;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      font-size: inherit;
+      line-height: initial;
+      text-align: start;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      contain: content
+    }
+
+    .alert-button.sc-ion-alert-ios,
+    .alert-checkbox.sc-ion-alert-ios,
+    .alert-input.sc-ion-alert-ios,
+    .alert-radio.sc-ion-alert-ios {
+      outline: none
+    }
+
+    .alert-radio-icon.sc-ion-alert-ios,
+    .alert-checkbox-icon.sc-ion-alert-ios,
+    .alert-checkbox-inner.sc-ion-alert-ios {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box
+    }
+
+    textarea.alert-input.sc-ion-alert-ios {
+      min-height: 37px;
+      resize: none
+    }
+
+    .sc-ion-alert-ios-h {
+      --background: var(--ion-overlay-background-color, var(--ion-color-step-100, #f9f9f9));
+      --max-width: 270px;
+      --backdrop-opacity: var(--ion-backdrop-opacity, 0.3);
+      font-size: 14px
+    }
+
+    .alert-wrapper.sc-ion-alert-ios {
+      border-radius: 13px;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      overflow: hidden
+    }
+
+    .alert-button.sc-ion-alert-ios .alert-button-inner.sc-ion-alert-ios {
+      pointer-events: none
+    }
+
+    @supports ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
+      .alert-translucent.sc-ion-alert-ios-h .alert-wrapper.sc-ion-alert-ios {
+        background: rgba(var(--ion-background-color-rgb, 255, 255, 255), 0.9);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px)
+      }
+    }
+
+    .alert-head.sc-ion-alert-ios {
+      -webkit-padding-start: 16px;
+      padding-inline-start: 16px;
+      -webkit-padding-end: 16px;
+      padding-inline-end: 16px;
+      padding-top: 12px;
+      padding-bottom: 7px;
+      text-align: center
+    }
+
+    .alert-title.sc-ion-alert-ios {
+      margin-top: 8px;
+      color: var(--ion-text-color, #000);
+      font-size: 17px;
+      font-weight: 600
+    }
+
+    .alert-sub-title.sc-ion-alert-ios {
+      color: var(--ion-color-step-600, #666666);
+      font-size: 14px
+    }
+
+    .alert-message.sc-ion-alert-ios,
+    .alert-input-group.sc-ion-alert-ios {
+      -webkit-padding-start: 16px;
+      padding-inline-start: 16px;
+      -webkit-padding-end: 16px;
+      padding-inline-end: 16px;
+      padding-top: 0;
+      padding-bottom: 21px;
+      color: var(--ion-text-color, #000);
+      font-size: 13px;
+      text-align: center
+    }
+
+    .alert-message.sc-ion-alert-ios {
+      max-height: 240px
+    }
+
+    .alert-message.sc-ion-alert-ios:empty {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 12px
+    }
+
+    .alert-input.sc-ion-alert-ios {
+      border-radius: 4px;
+      margin-top: 10px;
+      -webkit-padding-start: 6px;
+      padding-inline-start: 6px;
+      -webkit-padding-end: 6px;
+      padding-inline-end: 6px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      border: 0.55px solid var(--ion-color-step-250, #bfbfbf);
+      background-color: var(--ion-background-color, #fff);
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none
+    }
+
+    .alert-input.sc-ion-alert-ios::-webkit-input-placeholder {
+      color: var(--ion-placeholder-color, var(--ion-color-step-400, #999999));
+      font-family: inherit;
+      font-weight: inherit
+    }
+
+    .alert-input.sc-ion-alert-ios::-moz-placeholder {
+      color: var(--ion-placeholder-color, var(--ion-color-step-400, #999999));
+      font-family: inherit;
+      font-weight: inherit
+    }
+
+    .alert-input.sc-ion-alert-ios:-ms-input-placeholder {
+      color: var(--ion-placeholder-color, var(--ion-color-step-400, #999999));
+      font-family: inherit;
+      font-weight: inherit
+    }
+
+    .alert-input.sc-ion-alert-ios::-ms-input-placeholder {
+      color: var(--ion-placeholder-color, var(--ion-color-step-400, #999999));
+      font-family: inherit;
+      font-weight: inherit
+    }
+
+    .alert-input.sc-ion-alert-ios::placeholder {
+      color: var(--ion-placeholder-color, var(--ion-color-step-400, #999999));
+      font-family: inherit;
+      font-weight: inherit
+    }
+
+    .alert-input.sc-ion-alert-ios::-ms-clear {
+      display: none
+    }
+
+    .alert-radio-group.sc-ion-alert-ios,
+    .alert-checkbox-group.sc-ion-alert-ios {
+      -ms-scroll-chaining: none;
+      overscroll-behavior: contain;
+      max-height: 240px;
+      border-top: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch
+    }
+
+    .alert-tappable.sc-ion-alert-ios {
+      min-height: 44px
+    }
+
+    .alert-radio-label.sc-ion-alert-ios {
+      -webkit-padding-start: 13px;
+      padding-inline-start: 13px;
+      -webkit-padding-end: 13px;
+      padding-inline-end: 13px;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      -ms-flex: 1;
+      flex: 1;
+      -ms-flex-order: 0;
+      order: 0;
+      color: var(--ion-text-color, #000)
+    }
+
+    [aria-checked=true].sc-ion-alert-ios .alert-radio-label.sc-ion-alert-ios {
+      color: var(--ion-color-primary, #3880ff)
+    }
+
+    .alert-radio-icon.sc-ion-alert-ios {
+      position: relative;
+      -ms-flex-order: 1;
+      order: 1;
+      min-width: 30px
+    }
+
+    [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios {
+      top: -7px;
+      position: absolute;
+      width: 6px;
+      height: 12px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border-width: 2px;
+      border-top-width: 0;
+      border-left-width: 0;
+      border-style: solid;
+      border-color: var(--ion-color-primary, #3880ff)
+    }
+
+    @supports (inset-inline-start: 0) {
+      [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios {
+        inset-inline-start: 7px
+      }
+    }
+
+    @supports not (inset-inline-start: 0) {
+      [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios {
+        left: 7px
+      }
+
+      [dir=rtl].sc-ion-alert-ios-h [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios,
+      [dir=rtl] .sc-ion-alert-ios-h [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios {
+        left: unset;
+        right: unset;
+        right: 7px
+      }
+
+      [dir=rtl].sc-ion-alert-ios [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios {
+        left: unset;
+        right: unset;
+        right: 7px
+      }
+
+      @supports selector(:dir(rtl)) {
+        [aria-checked=true].sc-ion-alert-ios .alert-radio-inner.sc-ion-alert-ios:dir(rtl) {
+          left: unset;
+          right: unset;
+          right: 7px
+        }
+      }
+    }
+
+    .alert-checkbox-label.sc-ion-alert-ios {
+      -webkit-padding-start: 13px;
+      padding-inline-start: 13px;
+      -webkit-padding-end: 13px;
+      padding-inline-end: 13px;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      -ms-flex: 1;
+      flex: 1;
+      color: var(--ion-text-color, #000)
+    }
+
+    .alert-checkbox-icon.sc-ion-alert-ios {
+      border-radius: 50%;
+      -webkit-margin-start: 16px;
+      margin-inline-start: 16px;
+      -webkit-margin-end: 6px;
+      margin-inline-end: 6px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      width: 24px;
+      height: 24px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--ion-item-border-color, var(--ion-border-color, var(--ion-color-step-250, #c8c7cc)));
+      background-color: var(--ion-item-background, var(--ion-background-color, #fff));
+      contain: strict
+    }
+
+    [aria-checked=true].sc-ion-alert-ios .alert-checkbox-icon.sc-ion-alert-ios {
+      border-color: var(--ion-color-primary, #3880ff);
+      background-color: var(--ion-color-primary, #3880ff)
+    }
+
+    [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios {
+      top: 4px;
+      position: absolute;
+      width: 5px;
+      height: 12px;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border-width: 1px;
+      border-top-width: 0;
+      border-left-width: 0;
+      border-style: solid;
+      border-color: var(--ion-background-color, #fff)
+    }
+
+    @supports (inset-inline-start: 0) {
+      [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios {
+        inset-inline-start: 9px
+      }
+    }
+
+    @supports not (inset-inline-start: 0) {
+      [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios {
+        left: 9px
+      }
+
+      [dir=rtl].sc-ion-alert-ios-h [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios,
+      [dir=rtl] .sc-ion-alert-ios-h [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios {
+        left: unset;
+        right: unset;
+        right: 9px
+      }
+
+      [dir=rtl].sc-ion-alert-ios [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios {
+        left: unset;
+        right: unset;
+        right: 9px
+      }
+
+      @supports selector(:dir(rtl)) {
+        [aria-checked=true].sc-ion-alert-ios .alert-checkbox-inner.sc-ion-alert-ios:dir(rtl) {
+          left: unset;
+          right: unset;
+          right: 9px
+        }
+      }
+    }
+
+    .alert-button-group.sc-ion-alert-ios {
+      -webkit-margin-end: -0.55px;
+      margin-inline-end: -0.55px;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap
+    }
+
+    .alert-button.sc-ion-alert-ios {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      border-radius: 0;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      min-width: 50%;
+      height: 44px;
+      border-top: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+      border-right: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+      background-color: transparent;
+      color: var(--ion-color-primary, #3880ff);
+      font-size: 17px;
+      overflow: hidden
+    }
+
+    [dir=rtl].sc-ion-alert-ios-h .alert-button.sc-ion-alert-ios:first-child,
+    [dir=rtl] .sc-ion-alert-ios-h .alert-button.sc-ion-alert-ios:first-child {
+      border-right: 0
+    }
+
+    [dir=rtl].sc-ion-alert-ios .alert-button.sc-ion-alert-ios:first-child {
+      border-right: 0
+    }
+
+    @supports selector(:dir(rtl)) {
+      .alert-button.sc-ion-alert-ios:first-child:dir(rtl) {
+        border-right: 0
+      }
+    }
+
+    .alert-button.sc-ion-alert-ios:last-child {
+      border-right: 0;
+      font-weight: bold
+    }
+
+    [dir=rtl].sc-ion-alert-ios-h .alert-button.sc-ion-alert-ios:last-child,
+    [dir=rtl] .sc-ion-alert-ios-h .alert-button.sc-ion-alert-ios:last-child {
+      border-right: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2)
+    }
+
+    [dir=rtl].sc-ion-alert-ios .alert-button.sc-ion-alert-ios:last-child {
+      border-right: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2)
+    }
+
+    @supports selector(:dir(rtl)) {
+      .alert-button.sc-ion-alert-ios:last-child:dir(rtl) {
+        border-right: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2)
+      }
+    }
+
+    .alert-button.ion-activated.sc-ion-alert-ios {
+      background-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1)
+    }
+
+    .alert-button-role-destructive.sc-ion-alert-ios,
+    .alert-button-role-destructive.ion-activated.sc-ion-alert-ios,
+    .alert-button-role-destructive.ion-focused.sc-ion-alert-ios {
+      color: var(--ion-color-danger, #eb445a)
+    }
+  </style>
+  <style>
+    /*
+    custom css
+    */
+    .team-table {
+      height: 60%;
+      overflow: auto;
+      overflow: hidden;
+    }
+
+    .soccer-field {
+      height: 40%;
+      overflow: auto;
+    }
+
+    .filters {
+      position: sticky;
+    }
+
+    .filters__bar {
+      display: flex;
+      overflow-x: scroll;
+    }
+
+    .list__players {
+      overflow: auto;
+      height: 100%;
+      width: 100%;
+      margin: 0%;
+    }
+
+    .player__team-icon {
+      width: 25px;
+      height: 30px;
+      margin-right: 4px;
+    }
+
+    .player__selected {
+      --background: rgb(183 183 183 / 34%) !important;
+    }
+  </style>
+  <link rel="stylesheet" href="./common.css">
+  <script src="./ionic-common.js"></script>
+  <script type="module" src="./ionic.esm.js"></script>
+  <!-- <script type="module" src="./ionic.js"></script> -->
+  <link rel="stylesheet" href="./ionic.bundle.css">
+</head>
+
+<body>
+  <ion-app class="ios ion-page hydrated">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Invio formazione</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ios content-ltr hydrated">
+
+      <div class="team-table">
+
+        <section class="filters">
+          <div class="filters__bar" id="filter-actions">
+          </div>
+        </section>
+
+        <ion-list class="list__players" id="players-list">
+        </ion-list>
+
+      </div>
+      <div class="soccer-field">
+        <div>soccer field</div>asd
+        <ion-button id="present-alert">Click Me</ion-button>
+      </div>
+      <ion-alert trigger="present-alert" header="Alert" sub-header="Important message"
+        message="This is an alert!"></ion-alert>
+    </ion-content>
+  </ion-app>
+  <table cellspacing="0" cellpadding="1" border="0" bgcolor="#3333ff" align="center" width="100%">
+    <tbody>
+      <tr>
+        <td>
+          <table cellspacing="0" cellpadding="1" border="0" bgcolor="#cccccc" width="100%">
+            <tbody>
+              <tr>
+                <td>
+                  <table cellspacing="0" cellpadding="2" border="0" bgcolor="#ffffff" width="100%">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table cellspacing="0" cellpadding="1" border="0" bgcolor="#3333ff" width="100%">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <table cellspacing="0" cellpadding="1" border="0" bgcolor="#0000CC" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td>
+                                          <table cellspacing="1" cellpadding="0" border="0" width="100%">
+                                            <tbody>
+                                              <tr>
+                                                <td>
+                                                  <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                    <tbody>
+                                                      <tr>
+                                                        <td style="padding-left: 20px" align="left" valign="bottom"><br>
+                                                          <h1 class="Stile1">
+                                                            <script language="Javascript" type="text/javascript">
+                                                              document.write(nomelega)
+                                                            </script>BetaLega
+                                                          </h1>
+                                                          <div align="right"><span class="copyright">
+                                                              <script language="Javascript" type="text/javascript">
+                                                                document.write(stagione)
+                                                              </script>1a edizione |
+                                                              <script language="Javascript" type="text/javascript">
+                                                                document.write(anno)
+                                                              </script>2023/2024&nbsp;
+                                                            </span><br>
+                                                          </div>
+                                                        </td>
+                                                        <!-- navigazione -->
+                                                        <td align="right" valign="bottom">
+                                                          <table cellspacing="1" cellpadding="2" border="0"
+                                                            bgcolor="#3333ff" width="60%">
+                                                            <tbody>
+                                                              <tr>
+                                                                <td class="navcell" align="center" bgcolor="#0000ff"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/index.htm">home</a>
+                                                                </td>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/rose.htm">rose</a>
+                                                                </td>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/class.htm">classifiche</a>
+                                                                </td>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/cale.htm">calendario</a>
+                                                                </td>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/form.htm">formazioni</a>
+                                                                </td>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/ris.htm">risultati</a>
+                                                                </td>
+                                                                <script language="Javascript" type="text/javascript">
+                                                                  if (invioFormazione == "si") document.write("<td class='navcell' align='center' bgcolor='#000099'><a class='navlink' href='invform.htm'>invio formazione</a></td>");
+                                                                </script>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/invform.htm">invio
+                                                                    formazione</a></td>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/rv.htm">registri</a>
+                                                                </td>
+                                                                <script language="Javascript" type="text/javascript">
+                                                                  if (statistiche == "si") document.write("<td class='navcell' align='center' bgcolor='#000099'><a class='navlink' href='stats.htm'>statistiche</a></td>");
+                                                                </script>
+                                                                <td class="navcell" align="center" bgcolor="#000099"><a
+                                                                    class="navlink"
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/albo.htm">albo&nbsp;d'oro</a>
+                                                                </td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                </td>
+                                              </tr>
+                                              <!-- Page Middle -->
+                                              <tr>
+                                                <td>
+                                                  <table cellspacing="1" cellpadding="2" border="0" bgcolor="#3333ff"
+                                                    width="100%">
+                                                    <tbody>
+                                                      <tr>
+                                                        <td bgcolor="#FFFFCC" align="center">
+                                                          <script language="JavaScript" type="text/javascript">
+                                                            var cGio, cFsq;
+                                                            cFsq = parseInt(JSQueryString("Fsq"));
+                                                            cGio = parseInt(JSQueryString("Gio"));
+
+                                                            if (CaricaDefault === "si") {
+                                                              if (isNaN(cFsq)) cFsq = arrFantasquadre[1].ID;
+                                                              if (isNaN(cGio)) cGio = GetProssimaGiornataDaGiocare();
+                                                            }
+                                                            document.write("<script src='js/fcmFormazioniDati" + cGio + ".js' type='text/javascript'></scr" + "ipt>");
+
+                                                            var termineInvio;
+                                                            document.write("<script src='invform/invform.php?azione=ottieneTermine&giornataDiA=" + cGio + "' type='text/javascript'></scr" + "ipt>");
+                                                          </script>
+                                                          <!-- <script
+                                                            src="./invform-with-players_files/fcmFormazioniDati1.js"
+                                                            type="text/javascript"></script> -->
+                                                          <script src="./invform-with-players_files/invform.php"
+                                                            type="text/javascript"></script>
+                                                          <script language="JavaScript" type="text/javascript">
+                                                            GeneraIntestazioneInvioFormazione(cFsq, cGio);
+                                                            if (GeneraSelezioneCompetizioni(cFsq, cGio)) {
+                                                              GeneraTabelleGiocatori();
+                                                              GeneraControlliPerInvio();
+                                                              ReimpostaFormazione();
+                                                            }
+                                                          </script>
+                                                          <form name="frmIF" id="frmIF"
+                                                            action="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/invform.htm"
+                                                            method="get">
+                                                            <table width="100%" border="0" cellspacing="0"
+                                                              cellpadding="0">
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td width="5%" class="t-xxsB">
+                                                                    <nobr>Fantasquadra:&nbsp;<select name="Fsq"
+                                                                        class="t-xxs" id="Fsq">
+                                                                        <option value="1" selected="">Gian</option>
+                                                                        <option value="2">Simone</option>
+                                                                        <option value="3">Washington</option>
+                                                                        <option value="4">Paolo</option>
+                                                                      </select></nobr>
+                                                                  </td>
+                                                                  <td width="5%" class="t-xxsB">
+                                                                    <nobr>&nbsp;&nbsp;Giornata:&nbsp;<select name="Gio"
+                                                                        class="t-xxs" id="Gio">
+                                                                        <option value="1" selected="">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                        <option value="10">10</option>
+                                                                        <option value="11">11</option>
+                                                                        <option value="12">12</option>
+                                                                        <option value="13">13</option>
+                                                                        <option value="14">14</option>
+                                                                        <option value="15">15</option>
+                                                                        <option value="16">16</option>
+                                                                        <option value="17">17</option>
+                                                                        <option value="18">18</option>
+                                                                        <option value="19">19</option>
+                                                                        <option value="20">20</option>
+                                                                        <option value="21">21</option>
+                                                                        <option value="22">22</option>
+                                                                        <option value="23">23</option>
+                                                                        <option value="24">24</option>
+                                                                        <option value="25">25</option>
+                                                                        <option value="26">26</option>
+                                                                        <option value="27">27</option>
+                                                                        <option value="28">28</option>
+                                                                        <option value="29">29</option>
+                                                                        <option value="30">30</option>
+                                                                        <option value="31">31</option>
+                                                                        <option value="32">32</option>
+                                                                        <option value="33">33</option>
+                                                                        <option value="34">34</option>
+                                                                        <option value="35">35</option>
+                                                                        <option value="36">36</option>
+                                                                        <option value="37">37</option>
+                                                                        <option value="38">38</option>
+                                                                      </select></nobr>
+                                                                  </td>
+                                                                  <td width="95%" class="t-xxsB">&nbsp;&nbsp;<input
+                                                                      name="Invia" type="submit" class="t-xxs"
+                                                                      id="Invia" value="  Vai  "></td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table>
+                                                          </form>
+                                                          <table width="100%" border="0" cellspacing="0"
+                                                            cellpadding="0">
+                                                            <tbody>
+                                                              <tr>
+                                                                <td class="t-xxsB" valign="middle">
+                                                                  <nobr><input class="t-xxs" type="checkbox" value="1"
+                                                                      id="incontro1" checked="" disabled=""></nobr>
+                                                                </td>
+                                                                <td width="100%" class="t-xxsB">Campionato: 1a (Gian -
+                                                                  Simone)</td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table><br>
+                                                          <table width="95%" border="0" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                              <tr>
+                                                                <td width="62.5%" align="center" valign="top">
+                                                                  <table id="tabellaDati" height="100%" width="100%"
+                                                                    border="0" cellspacing="0" cellpadding="1"
+                                                                    class="ClassEl">
+                                                                    <thead>
+                                                                      <tr>
+                                                                        <td width="5%" class="IntRossoBlu">R</td>
+                                                                        <td width="25%" class="IntRossoBlu">
+                                                                          Nome&nbsp;(Squadra)</td>
+                                                                        <td width="10%" class="IntRossoBlu">Aff</td>
+                                                                        <td width="10%" class="IntRossoBlu">MVt</td>
+                                                                        <td width="10%" class="IntRossoBlu">FMt</td>
+                                                                        <td width="10%" class="IntRossoBlu">MVu</td>
+                                                                        <td width="10%" class="IntRossoBlu">FMu</td>
+                                                                        <td width="20%" class="IntRossoBlu">Sq Avv.</td>
+                                                                      </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo0">&nbsp;P&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome0"
+                                                                              onclick="ClickGiocatoreRosa(0)">CARNESECCHI
+                                                                              Marco (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo1">&nbsp;P&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome1"
+                                                                              onclick="ClickGiocatoreRosa(1)">MUSSO Juan
+                                                                              Agustin (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo2">&nbsp;P&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome2"
+                                                                              onclick="ClickGiocatoreRosa(2)">ROSSI
+                                                                              Francesco (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo3">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome3"
+                                                                              onclick="ClickGiocatoreRosa(3)">BAKKER
+                                                                              Mitchel (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo4">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome4"
+                                                                              onclick="ClickGiocatoreRosa(4)">BONFANTI
+                                                                              Giovanni (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo5">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome5"
+                                                                              onclick="ClickGiocatoreRosa(5)">DEMIRAL
+                                                                              Merih (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo6">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome6"
+                                                                              onclick="ClickGiocatoreRosa(6)">DJIMSITI
+                                                                              Berat (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo7">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome7"
+                                                                              onclick="ClickGiocatoreRosa(7)">GHISLANDI
+                                                                              Davide (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo8">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome8"
+                                                                              onclick="ClickGiocatoreRosa(8)">HATEBOER
+                                                                              Hans (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo9">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome9"
+                                                                              onclick="ClickGiocatoreRosa(9)">KOLASINAC
+                                                                              Sead (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo10">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome10"
+                                                                              onclick="ClickGiocatoreRosa(10)">MAEHLE
+                                                                              Joakim (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo11">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome11"
+                                                                              onclick="ClickGiocatoreRosa(11)">OKOLI
+                                                                              Memeh Caleb (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo12">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome12"
+                                                                              onclick="ClickGiocatoreRosa(12)">PALOMINO
+                                                                              Jose' Luis (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo13">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome13"
+                                                                              onclick="ClickGiocatoreRosa(13)">RUGGERI
+                                                                              Matteo (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo14">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome14"
+                                                                              onclick="ClickGiocatoreRosa(14)">SCALVINI
+                                                                              Giorgio (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo15">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome15"
+                                                                              onclick="ClickGiocatoreRosa(15)">SOPPY
+                                                                              Brandon (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo16">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome16"
+                                                                              onclick="ClickGiocatoreRosa(16)">TOLOI
+                                                                              Rafael (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo17">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome17"
+                                                                              onclick="ClickGiocatoreRosa(17)">ZORTEA
+                                                                              Nadir (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo18">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome18"
+                                                                              onclick="ClickGiocatoreRosa(18)">ADOPO
+                                                                              Michel Ndary (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo19">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome19"
+                                                                              onclick="ClickGiocatoreRosa(19)">DE ROON
+                                                                              Marten (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo20">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome20"
+                                                                              onclick="ClickGiocatoreRosa(20)">EDERSON
+                                                                              Jose' dos Santos (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo21">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome21"
+                                                                              onclick="ClickGiocatoreRosa(21)">KOOPMEINERS
+                                                                              Teun (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo22">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome22"
+                                                                              onclick="ClickGiocatoreRosa(22)">KOVALENKO
+                                                                              Viktor (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo23">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome23"
+                                                                              onclick="ClickGiocatoreRosa(23)">MALLAMO
+                                                                              Alessandro (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo24">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome24"
+                                                                              onclick="ClickGiocatoreRosa(24)">PASALIC
+                                                                              Mario (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo25">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome25"
+                                                                              onclick="ClickGiocatoreRosa(25)">ZAPPACOSTA
+                                                                              Davide (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo26">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome26"
+                                                                              onclick="ClickGiocatoreRosa(26)">CAMBIAGHI
+                                                                              Nicolo' (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo27">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome27"
+                                                                              onclick="ClickGiocatoreRosa(27)">COLLEY
+                                                                              Ebrima (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo28">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome28"
+                                                                              onclick="ClickGiocatoreRosa(28)">HOJLUND
+                                                                              Rasmus Winther (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo29">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome29"
+                                                                              onclick="ClickGiocatoreRosa(29)">LATTE
+                                                                              LATH Junior Emmanuel (Atalanta)</span>
+                                                                          </nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo30">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome30"
+                                                                              onclick="ClickGiocatoreRosa(30)">LOOKMAN
+                                                                              Ademola Olajade (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo31">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome31"
+                                                                              onclick="ClickGiocatoreRosa(31)">MIRANCHUK
+                                                                              Aleksey (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo32">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome32"
+                                                                              onclick="ClickGiocatoreRosa(32)">MURIEL
+                                                                              Luis Fernando Fruto (Atalanta)</span>
+                                                                          </nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormDCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo33">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormD">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome33"
+                                                                              onclick="ClickGiocatoreRosa(33)">TOURE' El
+                                                                              Bilal (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormDCentro">0</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="10%" class="RvDCentro">---</td>
+                                                                        <td width="20%" class="FormD"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="5%" class="FormPCentro"><span
+                                                                            class="t-xxsI"
+                                                                            id="r_ruolo34">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="25%" class="FormP">
+                                                                          <nobr><span class="t-xxsI"
+                                                                              style="cursor: pointer" id="r_nome34"
+                                                                              onclick="ClickGiocatoreRosa(34)">ZAPATA
+                                                                              Duvan Esteban (Atalanta)</span></nobr>
+                                                                        </td>
+                                                                        <td width="10%" class="FormPCentro">0</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="10%" class="RvPCentro">---</td>
+                                                                        <td width="20%" class="FormP"><span
+                                                                            class="t-xxs">Sassuolo</span></td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table>
+                                                                </td>
+                                                                <td width="2.5%">&nbsp;</td>
+                                                                <td width="35%" align="center" valign="top">
+                                                                  <table id="tabellaDati" height="100%" width="100%"
+                                                                    border="0" cellspacing="0" cellpadding="0"
+                                                                    class="ClassEl">
+                                                                    <thead>
+                                                                      <tr>
+                                                                        <td colspan="4" class="IntRossoBlu"><span
+                                                                            id="f_titolari">Titolari (4-4-2)</span></td>
+                                                                      </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;1&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia1" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsGB"
+                                                                            id="f_ruolo1">&nbsp;P&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsGB" style="cursor: pointer"
+                                                                            id="f_nome1"
+                                                                            onclick="ClickGiocatoreFormazione(1)">MUSSO
+                                                                            Juan Agustin (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;2&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia2" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo2">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome2"
+                                                                            onclick="ClickGiocatoreFormazione(2)">SCALVINI
+                                                                            Giorgio (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;3&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia3" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo3">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome3"
+                                                                            onclick="ClickGiocatoreFormazione(3)">BAKKER
+                                                                            Mitchel (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;4&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia4" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo4">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome4"
+                                                                            onclick="ClickGiocatoreFormazione(4)">DJIMSITI
+                                                                            Berat (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;5&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia5" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo5">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome5"
+                                                                            onclick="ClickGiocatoreFormazione(5)">KOLASINAC
+                                                                            Sead (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;6&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia6" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo6">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome6"
+                                                                            onclick="ClickGiocatoreFormazione(6)">PASALIC
+                                                                            Mario (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;7&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia7" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo7">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome7"
+                                                                            onclick="ClickGiocatoreFormazione(7)">KOOPMEINERS
+                                                                            Teun (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;8&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia8" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo8">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome8"
+                                                                            onclick="ClickGiocatoreFormazione(8)">DE
+                                                                            ROON Marten (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;9&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia9" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo9">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome9"
+                                                                            onclick="ClickGiocatoreFormazione(9)">ZAPPACOSTA
+                                                                            Davide (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;10&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia10" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo10">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome10"
+                                                                            onclick="ClickGiocatoreFormazione(10)">ZAPATA
+                                                                            Duvan Esteban (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;11&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia11" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo11">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome11"
+                                                                            onclick="ClickGiocatoreFormazione(11)">LOOKMAN
+                                                                            Ademola Olajade (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr>
+                                                                        <td colspan="4" class="IntRossoBlu"><span
+                                                                            id="f_riserve">Riserve</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;12&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia12" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo12">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome12"
+                                                                            onclick="ClickGiocatoreFormazione(12)">TOURE'
+                                                                            El Bilal (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;13&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia13" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo13">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome13"
+                                                                            onclick="ClickGiocatoreFormazione(13)">MURIEL
+                                                                            Luis Fernando Fruto (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;14&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia14" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo14">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome14"
+                                                                            onclick="ClickGiocatoreFormazione(14)">MIRANCHUK
+                                                                            Aleksey (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;15&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia15" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo15">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome15"
+                                                                            onclick="ClickGiocatoreFormazione(15)">LATTE
+                                                                            LATH Junior Emmanuel (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;16&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia16" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo16">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome16"
+                                                                            onclick="ClickGiocatoreFormazione(16)">HOJLUND
+                                                                            Rasmus Winther (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;17&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia17" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo17">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome17"
+                                                                            onclick="ClickGiocatoreFormazione(17)">COLLEY
+                                                                            Ebrima (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;18&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia18" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsBluB"
+                                                                            id="f_ruolo18">&nbsp;A&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsBluB" style="cursor: pointer"
+                                                                            id="f_nome18"
+                                                                            onclick="ClickGiocatoreFormazione(18)">CAMBIAGHI
+                                                                            Nicolo' (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;19&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia19" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo19">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome19"
+                                                                            onclick="ClickGiocatoreFormazione(19)">MALLAMO
+                                                                            Alessandro (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;20&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia20" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo20">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome20"
+                                                                            onclick="ClickGiocatoreFormazione(20)">KOVALENKO
+                                                                            Viktor (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;21&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia21" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo21">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome21"
+                                                                            onclick="ClickGiocatoreFormazione(21)">EDERSON
+                                                                            Jose' dos Santos (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;22&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia22" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsRB"
+                                                                            id="f_ruolo22">&nbsp;C&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsRB" style="cursor: pointer"
+                                                                            id="f_nome22"
+                                                                            onclick="ClickGiocatoreFormazione(22)">ADOPO
+                                                                            Michel Ndary (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;23&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia23" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo23">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome23"
+                                                                            onclick="ClickGiocatoreFormazione(23)">ZORTEA
+                                                                            Nadir (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;24&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia24" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo24">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome24"
+                                                                            onclick="ClickGiocatoreFormazione(24)">TOLOI
+                                                                            Rafael (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;25&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia25" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo25">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome25"
+                                                                            onclick="ClickGiocatoreFormazione(25)">SOPPY
+                                                                            Brandon (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;26&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia26" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo26">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome26"
+                                                                            onclick="ClickGiocatoreFormazione(26)">RUGGERI
+                                                                            Matteo (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;27&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia27" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo27">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome27"
+                                                                            onclick="ClickGiocatoreFormazione(27)">PALOMINO
+                                                                            Jose' Luis (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;28&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia28" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo28">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome28"
+                                                                            onclick="ClickGiocatoreFormazione(28)">OKOLI
+                                                                            Memeh Caleb (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;29&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia29" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo29">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome29"
+                                                                            onclick="ClickGiocatoreFormazione(29)">MAEHLE
+                                                                            Joakim (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;30&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia30" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo30">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome30"
+                                                                            onclick="ClickGiocatoreFormazione(30)">HATEBOER
+                                                                            Hans (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;31&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia31" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo31">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome31"
+                                                                            onclick="ClickGiocatoreFormazione(31)">GHISLANDI
+                                                                            Davide (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;32&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia32" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo32">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome32"
+                                                                            onclick="ClickGiocatoreFormazione(32)">DEMIRAL
+                                                                            Merih (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;33&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia33" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsVB"
+                                                                            id="f_ruolo33">&nbsp;D&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsVB" style="cursor: pointer"
+                                                                            id="f_nome33"
+                                                                            onclick="ClickGiocatoreFormazione(33)">BONFANTI
+                                                                            Giovanni (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsB">&nbsp;34&nbsp;</span></td>
+                                                                        <td width="1%" class="FormPCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia34" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormPCentro"><span
+                                                                            class="t-xxsGB"
+                                                                            id="f_ruolo34">&nbsp;P&nbsp;</span></td>
+                                                                        <td width="85%" class="FormP"><span
+                                                                            class="t-xxsGB" style="cursor: pointer"
+                                                                            id="f_nome34"
+                                                                            onclick="ClickGiocatoreFormazione(34)">ROSSI
+                                                                            Francesco (Atalanta)</span></td>
+                                                                      </tr>
+                                                                      <tr class="t-xxs">
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsB">&nbsp;35&nbsp;</span></td>
+                                                                        <td width="1%" class="FormDCentro"><img
+                                                                            src="./invform-with-players_files/Atalanta.gif"
+                                                                            width="32" height="32" id="f_maglia35" <=""
+                                                                            td=""></td>
+                                                                        <td width="7%" class="FormDCentro"><span
+                                                                            class="t-xxsGB"
+                                                                            id="f_ruolo35">&nbsp;P&nbsp;</span></td>
+                                                                        <td width="85%" class="FormD"><span
+                                                                            class="t-xxsGB" style="cursor: pointer"
+                                                                            id="f_nome35"
+                                                                            onclick="ClickGiocatoreFormazione(35)">CARNESECCHI
+                                                                            Marco (Atalanta)</span></td>
+                                                                      </tr>
+                                                                    </tbody>
+                                                                  </table><br><input type="button" class="t-xxs"
+                                                                    value=" Inizializza "
+                                                                    onclick="InizializzaFormazione()">&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                                                    type="button" class="t-xxs" value=" Reimposta "
+                                                                    onclick="ReimpostaFormazione()">
+                                                                </td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
+                                                          <form id="formInvio"
+                                                            action="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/invform/invform.php"
+                                                            method="post" accept-charset="utf-8" target="invformWindow"
+                                                            onsubmit="return InviaFormazione();">
+                                                            <p>&nbsp;</p>
+                                                            <table width="95%" border="0" cellpadding="0"
+                                                              cellspacing="0">
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td colspan="3" width="100%" align="left" valign="top"
+                                                                    class="t-xxsB">Comunicazioni:<br><textarea
+                                                                      id="fi_comunicazioni" class="t-xxs" rows="4"
+                                                                      style="width: 100%"></textarea><br><br></td>
+                                                                </tr>
+                                                                <tr>
+                                                                  <td width="65%">&nbsp;</td>
+                                                                  <td align="left" valign="top" class="t-xxsB">
+                                                                    <nobr>Password: <input type="password"
+                                                                        name="password" value="" class="t-xxs"></nobr>
+                                                                  </td>
+                                                                  <td align="right" valign="top"><input type="submit"
+                                                                      value="  Invia formazione  " class="t-xxs"></td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table><input type="hidden" name="azione"
+                                                              value="inviaFormazione"><input type="hidden"
+                                                              id="fi_idSquadra" name="idSquadra"><input type="hidden"
+                                                              id="fi_giornataDiA" name="giornataDiA"><input
+                                                              type="hidden" id="fi_formazioni" name="formazioni">
+                                                          </form><br>
+                                                        </td>
+                                                      </tr>
+                                                      <!-- Last Update -->
+                                                      <tr>
+                                                        <td align="right" class="update" bgcolor="#6C856C">
+                                                          <table width="100%" border="0" cellpadding="1">
+                                                            <tbody>
+                                                              <tr>
+                                                                <td align="left"><a
+                                                                    href="file:///Users/washingtoncatalan/Documents/GIT2/fantacalcio-last-version-original/fcmprove/index.htm"
+                                                                    class="navlink">Home</a></td>
+                                                                <td align="right">Ultimo Aggiornamento:
+                                                                  <script language="Javascript" type="text/javascript">
+                                                                    document.write(aggiornamento)
+                                                                  </script>20/08/2023 16:54:28
+                                                                </td>
+                                                              </tr>
+                                                            </tbody>
+                                                          </table>
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                </td>
+                                              </tr>
+                                              <!-- Copyright Info -->
+                                              <tr>
+                                                <td align="right" class="copyright">� 2004 Fantacalcio Manager | �
+                                                  2005-2022 johndoe | Webmaster:
+                                                  <script language="Javascript" type="text/javascript">
+                                                    CreaWebmaster()
+                                                  </script><a class="navlink"
+                                                    href="mailto:me@webmaster.it">Webmaster</a>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>

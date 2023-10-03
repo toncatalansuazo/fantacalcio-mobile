@@ -1,0 +1,926 @@
+.titolo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-large;
+	font-style: italic;
+	font-weight: bold;
+
+}
+
+.Giornata {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #000099;
+	font-weight: bold;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-top-color: #666666;
+	border-right-color: #CCCCCC;
+	border-bottom-color: #CCCCCC;
+	border-left-color: #666666;
+}
+.Competizione {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	font-weight: bold;
+	color: #990000;
+	border-top-width: 1px;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #CCCCCC;
+	border-left-color: #666666;
+	border-top-style: dashed;
+	border-top-color: #CCCCCC;
+
+}
+.IncSqP {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: center;
+	border-top-width: 1px;
+	border-right-width: thin;
+	border-bottom-width: 1px;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #CCCCCC;
+	border-left-color: #666666;
+	background-color: #CCCCCC;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat-x;
+	background-position: center;
+
+
+}
+.IncSqD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	text-align: center;
+	border-top-width: 1px;
+	border-right-width: thin;
+	border-bottom-width: 1px;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-top-color: #CCCCCC;
+	border-left-color: #666666;
+	background-color: #eeeeee;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat-x;
+	background-position: center;
+
+
+}
+
+.IncRisP {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	font-weight: bold;
+	text-align: center;
+	border-top-width: 1px;
+	border-right-width: thin;
+	border-bottom-width: 1px;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-top-color: #CCCCCC;
+	border-right-color: #CCCCCC;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+	border-left-style: double;
+	border-left-color: #CCCCCC;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat-x;
+	background-position: center;
+
+
+
+}
+.IncRisD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	font-weight: bold;
+	text-align: center;
+	border-top-width: 1px;
+	border-right-width: thin;
+	border-bottom-width: 1px;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-top-color: #CCCCCC;
+	border-right-color: #CCCCCC;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+	border-left-style: double;
+	border-left-color: #CCCCCC;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat-x;
+	background-position: center;
+
+
+
+}
+.Girone {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #009900;
+	font-weight: bold;
+	border-top-width: 1px;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-top-color: #CCCCCC;
+	border-right-color: #CCCCCC;
+	border-bottom-color: #CCCCCC;
+	border-left-color: #666666;
+	border-top-style: dashed;
+
+}
+
+.t-xxs {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #000000;
+}
+
+.t-xxsB {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	font-weight: bold;
+	color: #000000;
+}
+
+.t-xs {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #000000;
+}
+.t-s {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+.t-m {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	color: #000000;
+}
+.t-l {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: large;
+}
+.IntRossoBlu {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #990000;
+	font-weight: bold;
+	border: 1px solid #0033FF;
+	text-align: center;
+	background: url(img/sfuBlu.gif) repeat-x center center;
+
+
+}
+.t-xxsV {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #009900;
+
+}
+.t-xxsR {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #CC0000;
+}
+.t-xxsVB {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #009900;
+	font-weight: bold;
+
+
+}
+.t-xxsRB {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #CC0000;
+	font-weight: bold;
+
+}
+.t-xxsG {
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #999900;
+}
+.t-xxsGB {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #999900;
+	font-weight: bold;
+
+
+}
+.ClassP {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat-x;
+	background-position: center;
+
+
+
+
+}
+.ClassD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat-x;
+	background-position: center;
+}
+
+.ClassEl {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border: 1px solid #0033FF;
+
+}
+.ClassBianco {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #FFFFFF;
+	border: 1px solid #0033FF;
+}
+table {
+	border-collapse: collapse;
+}
+.Cella {
+	border: 1px solid #0033FF;
+}
+.t-xxsBluB {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #3300FF;
+	font-weight: bold;
+}
+.t-xxsBlu {
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #3300FF;
+	font-weight: normal;
+}
+.CellaCentro {
+	border: 1px solid #0033FF;
+	text-align: center;
+
+}
+.RosaP {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+}
+.RosaD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+}
+body {
+	margin: 0px;
+}
+.IntBluGiallo {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #0000FF;
+	font-weight: bold;
+	border: 1px solid #0033FF;
+	text-align: center;
+	background: url(img/sfuGiallo.gif) repeat-x center center;
+}
+.IntRossoBluDx {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #990000;
+	font-weight: bold;
+	border: 1px solid #0033FF;
+	text-align: right;
+	background: url(img/sfuBlu.gif) repeat-x center center;
+}
+.GiornataForm {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	color: #000099;
+	font-weight: bold;
+}
+.CompetizioneForm {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	font-weight: bold;
+	color: #990000;
+}
+.IntLayer {
+
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+	color: #0000FF;
+	font-weight: bold;
+	border: 1px solid #0033FF;
+	text-align: left;
+	background: url(img/sfuGiallo.gif) repeat-x center center;
+}
+.FormP {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP2.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.FormD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD2.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.FormNome {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	font-style: italic;
+	font-weight: bold;
+	border: 1px #0033FF;
+}
+
+.RisP {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+
+.RisD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.RisNome {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: medium;
+	font-style: italic;
+	font-weight: bold;
+	border: 1px #0033FF;
+}
+.CellaImg {
+	text-align: center;
+	vertical-align: middle;
+	background: center center;
+}
+.Bianco {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background: #FFFFFF url(none);
+	border-top: 1px solid #0033FF;
+	border-right: 1px none #0033FF;
+	border-bottom: 1px solid #0033FF;
+	border-left: 1px none #0033FF;
+	font-size: xx-small;
+}
+.FormPCentro {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP2.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: center;
+}
+.FormDCentro {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD2.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: center;
+}
+
+.RisPCentro {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP2.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: center;
+}
+
+.RisDCentro {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD2.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: center;
+}
+.CellaDestra {
+
+	border: 1px solid #0033FF;
+	text-align: right;
+}
+.t-xsB {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-weight: bold;
+}
+.CellaCentroRosso {
+	border: 1px solid #0033FF;
+	text-align: center;
+	background-color:#FF0000
+
+}
+.t-xsWB {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.CellaCentroVerde {
+
+	border: 1px solid #0033FF;
+	text-align: center;
+	background-color:#00CC00
+}
+.CellaNoBordo {
+
+	border: none;
+}
+.CellaNoBordoDx {
+	border: none;
+	text-align: right;
+}
+.t-xxsI {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	font-style: italic;
+}
+.RvP {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.RvD {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.CellaRvCiano {
+	border: 1px solid #0033FF;
+	background: #0359DA;
+	color: #FFFFFF;
+}
+.CellaRvRosso {
+	border: 1px solid #0033FF;
+	background: #DD0000;
+	color: #FFFFFF;
+}
+.CellaRvVerde {
+	border: 1px solid #0033FF;
+	background: #00A800;
+	color: #FFFFFF;
+}
+.CellaRvGiallo {
+	border: 1px solid #0033FF;
+	background: #B5B500;
+	color: #FFFFFF;
+}
+.tmodI {
+	font-style: italic;
+}
+.tmodB {
+	font-weight: bold;
+}
+.tmodBI {
+	font-style: italic;
+	font-weight: bold;
+}
+.tmodU {
+	text-decoration: underline;
+}
+.tmodIU {
+	font-style: italic;
+	text-decoration: underline;
+}
+.tmodBU {
+	font-weight: bold;
+	text-decoration: underline;
+}
+.tmodBIU {
+	font-style: italic;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.CellaRvCianoCentro {
+	border: 1px solid #0033FF;
+	background: #0359DA;
+	color: #FFFFFF;
+	text-align: center;
+}
+.CellaRvRossoCentro {
+
+	border: 1px solid #0033FF;
+	background: #DD0000;
+	color: #FFFFFF;
+	text-align: center;
+}
+.CellaRvVerdeCentro {
+
+	border: 1px solid #0033FF;
+	background: #00A800;
+	color: #FFFFFF;
+	text-align: center;
+}
+.CellaRvGialloCentro {
+
+	border: 1px solid #0033FF;
+	background: #B5B500;
+	color: #FFFFFF;
+	text-align: center;
+}
+.RvPCentro {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: center;
+}
+.RvDCentro {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: center;
+}
+body {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 12px;
+ font-weight: normal;
+ margin: 20px;
+ padding: 0px;
+ background-color: #FFFFCC;
+ color: #3333ff;
+}
+
+h1 {
+ font-family: Times New Roman, serif;
+ font-size: 26px;
+ font-weight: normal;
+ color: #e9f2fc;
+ background-color: transparent;
+ padding: 0px;
+ margin: 0px;
+ }
+
+h2 {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 14px;
+ font-weight: bold;
+ line-height: 14px;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+ h2.titletext {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 14px;
+ font-weight: bold;
+ line-height: 14px;
+ border-bottom: 1px solid #769176;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+p {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 12px;
+ font-weight: normal;
+ line-height: 18px;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+a {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 12px;
+ font-weight: normal;
+ text-decoration: underline;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+a:visited {
+ text-decoration: underline;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+a.navlink {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ text-decoration: none;
+ color: #e9f2fc;
+ background-color: transparent;
+ }
+
+a.navlink:visited {
+ text-decoration: none;
+ color: #e9f2fc;
+ background-color: transparent;
+ }
+
+a.newslink {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 10px;
+ font-weight: bold;
+ line-height: 10px;
+ text-decoration: none;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+a.newslink:visited {
+ text-decoration: none;
+ color: #900020;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+a.newslink:hover {
+ text-decoration: underline;
+ }
+
+li {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 12px;
+ font-weight: normal;
+ line-height: 18px;
+ padding-bottom: 7px;
+ color: #3333ff;
+ background-color: transparent;
+ }
+
+.navcell {
+ padding: 3px 7px 3px 7px;
+ }
+
+.newsheader {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 10px;
+ font-weight: normal;
+ line-height: 10px;
+ padding-left: 5px;
+ color: #e9f2fc;
+ background-color: #000099;
+ }
+
+.newscell {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 10px;
+ font-weight: normal;
+ line-height: 10px;
+ padding-top: 7px;
+ padding-left: 5px;
+ padding-right: 5px;
+ padding-bottom: 9px;
+ color: #3333ff;
+ background-color: #FFFF99;
+ }
+
+ .navinput {
+  vertical-align: middle;
+  width: 120px;
+  color: #3333ff;
+  background-color: #e9f2fc;
+ }
+
+ .navbutton {
+  position: relative;
+  left: 3px;
+  width: 30px;
+  background-color: #3333ff;
+  color: #e9f2fc;
+  font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  vertical-align: middle;
+ }
+
+.update {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 10px;
+ font-weight: normal;
+ line-height: 14px;
+ color: #e9f2fc;
+ background-color: transparent;
+ }
+
+.copyright {
+ font-family: Verdana, Lucida, helvetica, arial, sans-serif;
+ font-size: 10px;
+ font-weight: normal;
+ line-height: 10px;
+ color: #999999;
+ background-color: transparent;
+ }
+.Stile1 {font-family: Verdana, Lucida, helvetica, arial, sans-serif}
+.Stile2 {color: #e9f2fc}
+.CellaRvCianoGrigio {
+
+	border: 1px solid #0033FF;
+	background: #0359DA;
+	color: #CCCCCC;
+}
+.CellaRvRossoGrigio {
+
+	border: 1px solid #0033FF;
+	background: #DD0000;
+	color: #CCCCCC;
+}
+.CellaRvVerdeGrigio {
+
+	border: 1px solid #0033FF;
+	background: #00A800;
+	color: #CCCCCC;
+}
+.CellaRvGialloGrigio {
+
+	border: 1px solid #0033FF;
+	background: #B5B500;
+	color: #CCCCCC;
+}
+.RvPGrigio {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+	color: #666666;
+}
+.RvDGrigio {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+	color: #666666;
+}
+
+.AlboP {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+}
+.AlboD {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+}
+.CellaBold {
+	border: 1px solid #0033FF;
+	font-weight: bold;
+}
+.QueryP {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.QueryD {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.DocP {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #cccccc;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuP.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+.DocD {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: xx-small;
+	background-color: #eeeeee;
+	border: 1px solid #0033FF;
+	background-image: url(img/sfuD.gif);
+	background-repeat: repeat;
+	background-position: center;
+	text-align: left;
+}
+div.nooverflow{overflow:auto; border:1px solid #000}
+
+.tableBoxOuter {
+	width:100%;
+	height:29em;
+}
