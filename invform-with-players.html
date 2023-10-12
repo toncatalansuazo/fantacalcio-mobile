@@ -42,17 +42,17 @@
       --ion-color-primary: #000000;
       --ion-color-primary-contrast: #ffffff;
       --ion-color-primary-shade: #333333;
-      --ion-color-primary-tint: #1a1a1a;
+      --ion-color-primary-tint: #858282;
 
       /** secondary **/
-      --ion-color-secondary: #ffffff;
-      --ion-color-secondary-contrast: #000000;
+      --ion-color-secondary: #b4b4b4;
+      --ion-color-secondary-contrast: #867a7a;
       --ion-color-secondary-shade: #e6e6e6;
       --ion-color-secondary-tint: #ffffff;
 
       /** tertiary **/
       --ion-color-tertiary: #f9c922;
-      --ion-color-tertiary-contrast: #000000;
+      --ion-color-tertiary-contrast: #8c7575;
       --ion-color-tertiary-shade: #d6b31d;
       --ion-color-tertiary-tint: #fac736;
 
@@ -264,7 +264,7 @@
   </style>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style data-styles="">
+  <!-- <style data-styles="">
     ion-menu-button,
     ion-menu,
     ion-menu-toggle,
@@ -363,8 +363,8 @@
     .hydrated {
       visibility: inherit
     }
-  </style>
-  <style>
+  </style> -->
+  <!-- <style>
     html.plt-mobile ion-app {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -382,8 +382,8 @@
     ion-app.force-statusbar-padding {
       --ion-safe-area-top: 20px
     }
-  </style>
-  <style>
+  </style> -->
+  <!-- <style>
     .sc-ion-alert-ios-h {
       --min-width: 250px;
       --width: auto;
@@ -949,53 +949,19 @@
     .alert-button-role-destructive.ion-focused.sc-ion-alert-ios {
       color: var(--ion-color-danger, #eb445a)
     }
-  </style>
+  </style> -->
   <style>
     /*
     custom css
     */
-    .team-table {
-      height: 60%;
-      overflow: auto;
-      overflow: hidden;
-    }
-
-    .soccer-field {
-      height: 40%;
-      overflow: auto;
-    }
-
-    .filters {
-      position: sticky;
-    }
-
-    .filters__bar {
-      display: flex;
-      overflow-x: scroll;
-    }
-
-    .list__players {
-      overflow: auto;
-      height: 100%;
-      width: 100%;
-      margin: 0%;
-    }
-
-    .player__team-icon {
-      width: 25px;
-      height: 30px;
-      margin-right: 4px;
-    }
-
-    .player__selected {
-      --background: rgb(183 183 183 / 34%) !important;
-    }
+    
   </style>
   <link rel="stylesheet" href="./common.css">
   <script src="./ionic-common.js"></script>
   <script type="module" src="./ionic.esm.js"></script>
   <!-- <script type="module" src="./ionic.js"></script> -->
   <link rel="stylesheet" href="./ionic.bundle.css">
+  <link rel="stylesheet" href="./fanta-calcio-mobile.css">
 </head>
 
 <body>
@@ -1019,11 +985,32 @@
 
       </div>
       <div class="soccer-field">
-        <div>soccer field</div>asd
-        <ion-button id="present-alert">Click Me</ion-button>
-      </div>
-      <ion-alert trigger="present-alert" header="Alert" sub-header="Important message"
-        message="This is an alert!"></ion-alert>
+        <!-- <div class="soccer-field-container"> -->
+        <div class="field-header">
+          <div class="formation" id="current-formation">
+          </div>
+        </div>
+        <div class="field-main">
+          <div class="field-section" id="field-goalkeeper">
+          </div>
+          <div class="field-section" id="field-defenders">
+          </div>
+          <div class="field-section" id="field-midfielders">
+          </div>
+          <div class="field-section" id="field-forwards">
+          </div>
+        </div>
+        <div class="footer">
+        </div>
+        <!-- </div> -->
+        </div>
+        <div class="btn-actions">
+          <ion-fab>
+            <ion-fab-button vertical="center" edge="true">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
     </ion-content>
   </ion-app>
   <table cellspacing="0" cellpadding="1" border="0" bgcolor="#3333ff" align="center" width="100%">

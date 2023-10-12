@@ -1,6 +1,7 @@
 var txxsRowsPlayers;
 var players = [];
 var startingLineUp = [];
+var currentRoleFilter = "";
 
 function getPlayerInfoFromRoleTdElement(tdElement) {
   const playerRole = tdElement.querySelector("span").textContent;
@@ -47,10 +48,202 @@ function getOponentTeamName(tdElement) {
   return tdElement.textContent;
 }
 
-function addPlayerToLineUp(playerId) {
-  console.log(`player added`);
-  ClickGiocatoreRosa(playerId);
-  startingLineUp.push(playerId);
+function displayPlayerInSoccerField(
+  elementIdToPlacePlayer,
+  playerFieldHtml,
+  atrrId
+) {
+  const containerPlayerElment = document.createElement("div");
+  containerPlayerElment.classList.add("container");
+  containerPlayerElment.innerHTML = playerFieldHtml;
+  containerPlayerElment.setAttribute("id", atrrId);
+  const fieldGoalKeeperElement = document.getElementById(
+    elementIdToPlacePlayer
+  );
+  fieldGoalKeeperElement.appendChild(containerPlayerElment);
+}
+
+function isFormationValid(
+  goalkeeper = 0,
+  defenders = 0,
+  midfielders = 0,
+  forwards = 0
+) {
+  const formations = [
+    { goalkeeper: 1, defenders: 3, midfielders: 4, forwards: 3 },
+    { goalkeeper: 1, defenders: 3, midfielders: 5, forwards: 2 },
+    { goalkeeper: 1, defenders: 3, midfielders: 6, forwards: 1 },
+    { goalkeeper: 1, defenders: 4, midfielders: 3, forwards: 3 },
+    { goalkeeper: 1, defenders: 4, midfielders: 4, forwards: 2 },
+    { goalkeeper: 1, defenders: 4, midfielders: 5, forwards: 1 },
+    { goalkeeper: 1, defenders: 5, midfielders: 2, forwards: 3 },
+    { goalkeeper: 1, defenders: 5, midfielders: 3, forwards: 2 },
+    { goalkeeper: 1, defenders: 5, midfielders: 4, forwards: 1 },
+    { goalkeeper: 1, defenders: 6, midfielders: 1, forwards: 3 },
+    { goalkeeper: 1, defenders: 6, midfielders: 2, forwards: 2 },
+    { goalkeeper: 1, defenders: 6, midfielders: 3, forwards: 1 },
+    { goalkeeper: 1, defenders: 3, midfielders: 3, forwards: 4 },
+    { goalkeeper: 1, defenders: 4, midfielders: 2, forwards: 4 },
+  ];
+  return (
+    formations.filter(
+      (formation) =>
+        formation.goalkeeper >= goalkeeper &&
+        formation.defenders >= defenders &&
+        formation.midfielders >= midfielders &&
+        formation.forwards >= forwards
+    ).length > 0
+  );
+}
+
+function countByPlayerRole(playerSelected) {
+  let goalkeeper = 0;
+  let defenders = 0;
+  let midfielders = 0;
+  let forwards = 0;
+
+  for (let i = 0; i < playerSelected.length; i++) {
+    const player = playerSelected[i];
+    switch (player.role) {
+      case "P":
+        goalkeeper++;
+        break;
+      case "D":
+        defenders++;
+        break;
+      case "C":
+        midfielders++;
+        break;
+      case "A":
+        forwards++;
+        break;
+      default:
+        console.error(`player role not identidied. role = ${player.role}`);
+        break;
+    }
+  }
+  return { goalkeeper, defenders, midfielders, forwards };
+}
+/* 
+  Valid formations
+    * 3-4-3 / 3-5-2 / 3-6-1
+    * 4-3-3 / 4-4-2 / 4-5-1
+    * 5-2-3 / 5-3-2 / 5-4-1
+    * 6-1-3 / 6-2-2 / 6-3-1
+    * 3-3-4 / 4-2-4
+*/
+function canAddPlayer(player) {
+  let possibleStartingLineUp = Object.assign([], startingLineUp);
+  possibleStartingLineUp.push(player);
+  const { goalkeeper, defenders, midfielders, forwards } = countByPlayerRole(
+    possibleStartingLineUp
+  );
+  return isFormationValid(goalkeeper, defenders, midfielders, forwards);
+}
+
+const RoleType = {
+  Goalkeeper: "P",
+  Defender: "D",
+  Midfielders: "C",
+  Forwad: "A",
+};
+
+function getPlayerAttrIdSoccerField(player) {
+  return `soccer-field-player-id-${player.id}`;
+}
+
+function addToSoccerField(player) {
+  console.log(`add to soccer field`);
+  const playerElementIdattrSoccerField = getPlayerAttrIdSoccerField(player);
+  const roleClassMap = {
+    P: {
+      cssClass: "circle-goalkeeper",
+      elementId: "field-goalkeeper",
+      atrrId: playerElementIdattrSoccerField,
+    },
+    D: {
+      cssClass: "circle-defender",
+      elementId: "field-defenders",
+      atrrId: playerElementIdattrSoccerField,
+    },
+    C: {
+      cssClass: "circle-midfielder",
+      elementId: "field-midfielders",
+      atrrId: playerElementIdattrSoccerField,
+    },
+    A: {
+      cssClass: "circle-forwarder",
+      elementId: "field-forwards",
+      atrrId: playerElementIdattrSoccerField,
+    },
+  };
+  const playerAttributes = roleClassMap[player.role];
+  const playerFieldHtml = `
+  <ion-icon class="circle ${playerAttributes.cssClass}"
+    id="player-soccer-field-${player.id}"
+    size="large" color="primary" name="ellipse">
+  </ion-icon>
+  <div class="player-info"> ${player.name}</div>
+  `;
+
+  displayPlayerInSoccerField(
+    playerAttributes.elementId,
+    playerFieldHtml,
+    playerAttributes.atrrId
+  );
+}
+function displaySendButton() {
+  if (startingLineUp.length === 11) {
+    console.log(`display sent button`);
+  }
+}
+async function presentAlert({
+  header = "Alert",
+  subHeader = "",
+  message = "",
+  buttons = ["OK"],
+}) {
+  const alert = document.createElement("ion-alert");
+  alert.header = header;
+  alert.subHeader = subHeader;
+  alert.message = message;
+  alert.buttons = buttons;
+
+  document.body.appendChild(alert);
+  await alert.present();
+}
+function addPlayerToLineUp(player) {
+  const playerItemElement = getPlayerItemElement(player.id);
+  const playerIndex = startingLineUp.findIndex((p) => p.id === player.id);
+  const isAlreadyAdded = playerIndex !== -1;
+  if (isAlreadyAdded) {
+    removePlayerFromLineUp(player, playerIndex);
+    return;
+  }
+  if (!canAddPlayer(player)) {
+    presentAlert({
+      header: `Modulo non valido`,
+      message: `Rimuove uno dei giocatore con ruolo ${player.role} se vuoi inserire questo giocatore`,
+    });
+    return;
+  }
+  startingLineUp.push(player);
+  playerItemElement.setAttribute("color", "secondary");
+  addToSoccerField(player);
+  displayCurrentFormation();
+  displaySendButton();
+  ClickGiocatoreRosa(player.id);
+}
+
+function displayCurrentFormation() {
+  const { defenders, midfielders, forwards } =
+    countByPlayerRole(startingLineUp);
+  const currentFormationElement = document.getElementById(`current-formation`);
+  const formationElement = document.createElement("div");
+  formationElement.classList.add("formation");
+  formationElement.innerHTML = `<div class="current-formation">${defenders} - ${midfielders} - ${forwards}</div>`;
+  currentFormationElement.textContent = "";
+  currentFormationElement.appendChild(formationElement);
 }
 
 /**
@@ -58,13 +251,20 @@ function addPlayerToLineUp(playerId) {
  * for example if this was selected by 3er the position Id should be 3
  * if was the first one in be selected it should be 1
  */
-function removePlayerFromLineUp(positionId) {
+function removePlayerFromLineUp(player, positionId) {
+  const playerItemElement = getPlayerItemElement(player.id);
+  playerItemElement.removeAttribute("color");
+  startingLineUp.splice(positionId, 1);
+  removeFromSoccerField(player);
+  displayCurrentFormation();
   ClickGiocatoreFormazione(positionId);
+}
+function removeFromSoccerField(player) {
+  const soccerPlayerId = getPlayerAttrIdSoccerField(player);
+  document.getElementById(soccerPlayerId).remove();
 }
 
 function onLoadSuccess(table) {
-  // console.log(`success`, table);
-  // Use querySelectorAll to select all <tr> elements with class "t-xxs" within the table
   txxsRowsPlayers = table.querySelectorAll("tr.t-xxs");
   // console.log(txxsRowsPlayers.length)
   // Now, txxsRowsPlayers contains all the <tr> elements with class "t-xxs"
@@ -98,7 +298,7 @@ function onLoadSuccess(table) {
 
     const player = {
       id: playerId,
-      role: playerRole,
+      role: (playerRole || "").trim(),
       spanRoleIdElement,
       name: playerName,
       teamPlayerName,
@@ -108,6 +308,9 @@ function onLoadSuccess(table) {
       fmtValue,
       mvuValue,
       fmuValue,
+      getStats: function () {
+        return `Aff: ${this.affValue} MVt: ${this.mvtValue} FMt: ${this.fmtValue} MVu: ${this.mvuValue} FMu: ${this.fmuValue}`;
+      },
     };
     players.push(player);
   }
@@ -132,7 +335,7 @@ function addFilterPlayerButtons() {
       btn.textContent = filter.name;
       btn.classList.add("button");
       btn.setAttribute("size", "small");
-      btn.addEventListener("click", () => displayPlayers(filter.key));
+      btn.addEventListener("click", () => filterPlayerByRole(filter.key));
       filterElement.appendChild(btn);
     });
   } catch (error) {
@@ -141,7 +344,9 @@ function addFilterPlayerButtons() {
 }
 
 function createPlayerIonItem(
+  player,
   playerName,
+  role,
   teamName,
   oponentTeamName,
   stats,
@@ -159,6 +364,7 @@ function createPlayerIonItem(
   img.classList.add("player__team-icon");
   img.src = imageUrl;
   img.alt = "";
+  img.style = "margin: auto 6px auto auto;max-width:20%";
 
   // Create h2 element for player name
   const h2 = document.createElement("h2");
@@ -166,23 +372,58 @@ function createPlayerIonItem(
 
   // Create p element for stats
   const p = document.createElement("p");
-  p.textContent = stats + ` avv: ${oponentTeamName}`;
+  p.textContent = player.getStats() + ` avv: ${oponentTeamName}`;
 
+  const playerInfoElement = document.createElement("div");
+  playerInfoElement.setAttribute("style", "width: 100%;");
+  playerInfoElement.appendChild(h2);
+  playerInfoElement.appendChild(p);
   // Append elements to ion-label
   ionLabel.appendChild(img);
-  ionLabel.appendChild(h2);
-  ionLabel.appendChild(p);
+  ionLabel.appendChild(playerInfoElement);
+  ionLabel.setAttribute("style", "display: flex");
 
   // Append ion-label to ion-item
   ionItem.appendChild(ionLabel);
-  ionItem.addEventListener("click", () => addPlayerToLineUp(id));
+  ionItem.setAttribute("id", `player-item-${player.id}`);
+
+  ionItem.addEventListener("click", () => addPlayerToLineUp(player));
   return ionItem;
 }
+
+function getPlayerItemElement(playerId) {
+  return document.getElementById(`player-item-${playerId}`);
+}
+
+function filterPlayerByRole(role) {
+  console.log(`filterPlayerByRole`);
+  for (let i = 0; i < players.length; i++) {
+    const player = players[i];
+    if (player.role === role || role === "T") {
+      showPlayer(player);
+    } else {
+      hidePlayer(player);
+    }
+  }
+}
+
+function hidePlayer(player) {
+  const playerIonItem = getPlayerItemElement(player.id);
+  playerIonItem.setAttribute("style", "display: none");
+}
+
+function showPlayer(player) {
+  const playerIonItem = getPlayerItemElement(player.id);
+  playerIonItem.removeAttribute("style");
+}
+
 function addPlayersList() {
   const playerListElement = document.getElementById("players-list");
   players.forEach((player) => {
     const playerItem = createPlayerIonItem(
+      player,
       player.name,
+      player.role,
       player.teamPlayerName,
       player.oponentTeamName,
       `Aff: ${player.affValue} MVt: ${player.mvtValue} FMt: ${player.fmtValue} MVu: ${player.mvuValue} FMu: ${player.fmuValue}`,
