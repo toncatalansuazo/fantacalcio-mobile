@@ -126,3 +126,16 @@
   flex-direction: column;
   justify-content: center;
 }
+.btn-actions {
+  width: 100%;
+  background-color: red;
+  position: absolute;
+  display: flow;
+  z-index: 344;
+  /* top: 14px; */
+  bottom: 0px;
+  height: 5vh;
+}
+.btn-actions button {
+  height: 100%;
+}

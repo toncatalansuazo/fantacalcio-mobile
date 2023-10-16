@@ -3,8 +3,9 @@
  * loaded and parsed before adding the message
  * listener. Otherwise, it is possible that the message
  * listener will fire before the body is ready.
+ *  version 7.4.2
  */
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener("DOMContentLoaded", () => {
   /**
    * The parent Playground component will
    * dispatch messages whenever the theme on
@@ -12,13 +13,13 @@ window.addEventListener('DOMContentLoaded', () => {
    * the demos loaded in iframes can match the
    * docs website theme.
    */
-  window.addEventListener('message', (ev) => {
+  window.addEventListener("message", (ev) => {
     const { data } = ev;
 
     if (data.darkMode) {
-      document.body.classList.add('dark');
+      document.body.classList.add("dark");
     } else {
-      document.body.classList.remove('dark');
+      document.body.classList.remove("dark");
     }
   });
 
@@ -33,27 +34,27 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const dispatchConsoleEvent = (type, arguments) => {
     window.dispatchEvent(
-      new CustomEvent('console', {
+      new CustomEvent("console", {
         detail: {
           type,
-          message: Object.values(arguments).join(' '),
+          message: Object.values(arguments).join(" "),
         },
       })
     );
   };
 
   console.log = function () {
-    dispatchConsoleEvent('log', arguments);
+    dispatchConsoleEvent("log", arguments);
     return _log.apply(console, arguments);
   };
 
   console.warn = function () {
-    dispatchConsoleEvent('warning', arguments);
+    dispatchConsoleEvent("warning", arguments);
     return _warn.apply(console, arguments);
   };
 
   console.error = function () {
-    dispatchConsoleEvent('error', arguments);
+    dispatchConsoleEvent("error", arguments);
     return _error.apply(console, arguments);
   };
 
@@ -71,7 +72,7 @@ window.addEventListener('DOMContentLoaded', () => {
    * already created so that it does not wait on an event
    * that was already fired.
    */
-  const ev = new CustomEvent('demoReady');
+  const ev = new CustomEvent("demoReady");
   window.dispatchEvent(ev);
 
   window.demoReady = true;

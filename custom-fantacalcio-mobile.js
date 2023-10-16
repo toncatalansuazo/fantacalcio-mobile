@@ -436,7 +436,24 @@ function addPlayersList() {
   });
 }
 
+function listenSendFormationBtn() {
+  const btnSendFormation = document.getElementById("send-formation-btn");
+  btnSendFormation.addEventListener("click", ($event) => {
+    console.log("click send formation");
+  });
+}
+
+function cancel() {
+  modal.dismiss(null, "cancel");
+}
+
+function confirm() {
+  const input = document.querySelector("ion-input");
+  modal.dismiss(input.value, "confirm");
+}
+
 function onLoad() {
+  var modal = document.querySelector("ion-modal");
   console.log("loaded");
   // Get a reference to the table element by its ID
   let table = document.getElementById("tabellaDati");
@@ -444,6 +461,9 @@ function onLoad() {
     onLoadSuccess(table);
     addFilterPlayerButtons();
     addPlayersList();
+    listenSendFormationBtn();
+
+    modal.present();
   } else {
     setTimeout(() => onLoad(), 100);
   }
