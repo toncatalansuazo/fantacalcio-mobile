@@ -1,6 +1,7 @@
 var txxsRowsPlayers;
 var players = [];
 var startingLineUp = [];
+var reservePlayers = [];
 var currentRoleFilter = "";
 
 function getPlayerInfoFromRoleTdElement(tdElement) {
@@ -135,6 +136,8 @@ function countByPlayerRole(playerSelected) {
 function canAddPlayer(player) {
   let possibleStartingLineUp = Object.assign([], startingLineUp);
   possibleStartingLineUp.push(player);
+
+  players.filter((p) => p.id !== player.id);
   const { goalkeeper, defenders, midfielders, forwards } = countByPlayerRole(
     possibleStartingLineUp
   );
@@ -212,6 +215,42 @@ async function presentAlert({
   document.body.appendChild(alert);
   await alert.present();
 }
+
+function addPlayer(player) {
+  startingLineUp.push(player);
+  const idsSelected = startingLineUp.map((p) => p.id);
+  reservePlayers = players.filter((p) => !idsSelected.includes(p.id));
+}
+function createReserveItemElement(player) {
+  var ionItem = document.createElement("ion-item");
+  // Create the ion-label element and set its text content
+  var ionLabel = document.createElement("ion-label");
+  ionLabel.textContent = player.name;
+  // Create the ion-reorder element and set its slot attribute to "end"
+  var ionReorder = document.createElement("ion-reorder");
+  ionReorder.setAttribute("slot", "end");
+
+  // Append ionLabel and ionReorder as children to ionItem
+  ionItem.appendChild(ionLabel);
+  ionItem.appendChild(ionReorder);
+  return ionItem;
+}
+function displayReservePlayers() {
+  const reservePlayerList = document.querySelector(
+    "ion-reorder-group#reseve-list"
+  );
+  console.log("displaying", reservePlayers);
+  for (let i = 0; i < reservePlayers.length; i++) {
+    const reservePlayer = reservePlayers[i];
+    reservePlayerList.appendChild(createReserveItemElement(reservePlayer));
+  }
+}
+function clearReservePlayers() {
+  const reservePlayerList = document.querySelector(
+    "ion-reorder-group#reseve-list"
+  );
+  reservePlayerList.innerHTML = ``;
+}
 function addPlayerToLineUp(player) {
   const playerItemElement = getPlayerItemElement(player.id);
   const playerIndex = startingLineUp.findIndex((p) => p.id === player.id);
@@ -227,7 +266,7 @@ function addPlayerToLineUp(player) {
     });
     return;
   }
-  startingLineUp.push(player);
+  addPlayer(player);
   playerItemElement.setAttribute("color", "secondary");
   addToSoccerField(player);
   displayCurrentFormation();
@@ -246,6 +285,10 @@ function displayCurrentFormation() {
   currentFormationElement.appendChild(formationElement);
 }
 
+function removePlayer(positionId) {
+  startingLineUp.splice(positionId, 1);
+  reservePlayers = [];
+}
 /**
  * @param positionId is the position in which it was added to the starting lineup
  * for example if this was selected by 3er the position Id should be 3
@@ -254,7 +297,7 @@ function displayCurrentFormation() {
 function removePlayerFromLineUp(player, positionId) {
   const playerItemElement = getPlayerItemElement(player.id);
   playerItemElement.removeAttribute("color");
-  startingLineUp.splice(positionId, 1);
+  removePlayer(positionId);
   removeFromSoccerField(player);
   displayCurrentFormation();
   ClickGiocatoreFormazione(positionId);
@@ -436,24 +479,93 @@ function addPlayersList() {
   });
 }
 
-function listenSendFormationBtn() {
+function listenShowFormationModalBtn() {
   const btnSendFormation = document.getElementById("send-formation-btn");
   btnSendFormation.addEventListener("click", ($event) => {
+    var modal = document.querySelector("ion-modal");
+    modal.present();
+    clearReservePlayers();
+    displayReservePlayers();
     console.log("click send formation");
   });
 }
 
 function cancel() {
-  modal.dismiss(null, "cancel");
+  document.querySelector("ion-modal").dismiss(null, "cancel");
 }
 
 function confirm() {
-  const input = document.querySelector("ion-input");
-  modal.dismiss(input.value, "confirm");
+  sendMobileFormation();
+  document.querySelector("ion-modal").dismiss(input.value, "confirm");
 }
 
+function selectAllReservePlayers() {
+  for (let i = 0; i < reservePlayers.length; i++) {
+    const player = reservePlayers[i];
+    ClickGiocatoreRosa(player.id);
+  }
+}
+function unSelectAllReservePlayers() {
+  for (let i = 0; i < reservePlayers.length; i++) {
+    const player = reservePlayers[i];
+    ClickGiocatoreFormazione(player.id);
+  }
+}
+
+function sendMobileFormation() {
+  localStorage.setItem("fantacalcio-p", "washington");
+  const password = localStorage.getItem("fantacalcio-p");
+  if (password == null) {
+    presentAlert({
+      header: `Password non trovata`,
+      message: `Ricaraca la pagina`,
+    });
+    location.reload();
+  }
+  document.querySelector("input[name='password']").value = password;
+  document.querySelector("form#formInvio").submit();
+}
+
+function listenSupplyPlayers() {
+  const reorderGroup = document.querySelector("ion-reorder-group");
+
+  reorderGroup.addEventListener("ionItemReorder", (data) => {
+    // The `from` and `to` properties contain the index of the item
+    // when the drag started and ended, respectively
+    console.log("Before complete", reservePlayers);
+
+    // Finish the reorder and position the item in the DOM based on
+    // where the gesture ended. Update the reservePlayers variable to the
+    // new order of reservePlayers
+    data.detail.complete();
+
+    // Reorder the items in the DOM
+    // reorderItems(items);
+    console.log({ data });
+    // After complete is called the items will be in the new order
+    const from = data.detail.from;
+    const to = data.detail.to;
+    const isMovingDown = from < to;
+    if (isMovingDown) {
+      for (let i = from; i < to; i++) {
+        const element = Object.assign({}, reservePlayers[i]);
+        const elementAux = Object.assign({}, reservePlayers[i + 1]);
+        reservePlayers[i] = elementAux;
+        reservePlayers[i + 1] = element;
+      }
+    } else {
+      for (let i = from; i > to; i--) {
+        const element = Object.assign({}, reservePlayers[i]);
+        const elementAux = Object.assign({}, reservePlayers[i - 1]);
+        reservePlayers[i] = elementAux;
+        reservePlayers[i - 1] = element;
+      }
+    }
+    console.log("After complete", reservePlayers);
+    selectAllReservePlayers();
+  });
+}
 function onLoad() {
-  var modal = document.querySelector("ion-modal");
   console.log("loaded");
   // Get a reference to the table element by its ID
   let table = document.getElementById("tabellaDati");
@@ -461,9 +573,8 @@ function onLoad() {
     onLoadSuccess(table);
     addFilterPlayerButtons();
     addPlayersList();
-    listenSendFormationBtn();
-
-    modal.present();
+    listenShowFormationModalBtn();
+    listenSupplyPlayers();
   } else {
     setTimeout(() => onLoad(), 100);
   }
