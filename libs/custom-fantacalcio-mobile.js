@@ -220,6 +220,9 @@ function addPlayer(player) {
   startingLineUp.push(player);
   const idsSelected = startingLineUp.map((p) => p.id);
   reservePlayers = players.filter((p) => !idsSelected.includes(p.id));
+  if (startingLineUp.length === 11) {
+    presentReserveModal();
+  }
 }
 function createReserveItemElement(player) {
   var ionItem = document.createElement("ion-item");
@@ -482,12 +485,15 @@ function addPlayersList() {
 function listenShowFormationModalBtn() {
   const btnSendFormation = document.getElementById("send-formation-btn");
   btnSendFormation.addEventListener("click", ($event) => {
-    var modal = document.querySelector("ion-modal");
-    modal.present();
-    clearReservePlayers();
-    displayReservePlayers();
-    console.log("click send formation");
+    presentReserveModal();
   });
+}
+
+function presentReserveModal() {
+  var modal = document.querySelector("ion-modal");
+  modal.present();
+  clearReservePlayers();
+  displayReservePlayers();
 }
 
 function cancel() {
@@ -565,17 +571,219 @@ function listenSupplyPlayers() {
     selectAllReservePlayers();
   });
 }
+function addMobileVersion() {
+  console.log("addMobileVersion");
+  // Create ion-app element
+  const ionApp = document.createElement("ion-app");
+  ionApp.classList.add("ios", "ion-page", "hydrated");
+
+  ionApp.innerHTML = `
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Invio formazione</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ios content-ltr hydrated">
+      <div class="team-table">
+        <section class="filters">
+          <div class="filters__bar" id="filter-actions">
+          </div>
+        </section>
+        <ion-list class="list__players" id="players-list">
+        </ion-list>
+      </div>
+      <div class="soccer-field">
+        <div class="field-header">
+          <div class="formation" id="current-formation">
+          </div>
+        </div>
+        <div class="field-main">
+          <div class="field-section" id="field-goalkeeper">
+          </div>
+          <div class="field-section" id="field-defenders">
+          </div>
+          <div class="field-section" id="field-midfielders">
+          </div>
+          <div class="field-section" id="field-forwards">
+          </div>
+        </div>
+        <div class="field-footer">
+        </div>
+        </div>
+        <div class="btn-actions">
+          <button id="send-formation-btn">asdadasads</button>
+        </div>
+        <ion-modal trigger="open-modal">
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button onclick="cancel()">Cancel</ion-button>
+              </ion-buttons>
+              <ion-title>Confirmare formazione</ion-title>
+              <ion-buttons slot="end">
+                <ion-button onclick="confirm()" strong="true">Confirm</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-list>
+              <ion-reorder-group id="reseve-list" disabled="false">
+              </ion-reorder-group>
+            </ion-list>
+          </ion-content>
+        </ion-modal>
+    </ion-content>`;
+
+  // Continue creating and appending other elements in a similar manner.
+
+  // Finally, append ionApp to the body
+  const body = document.body;
+
+  // Get the first child of the <body> element (if any)
+  const firstChild = body.firstChild;
+
+  // Insert ionApp as the first child of the <body> element
+  if (firstChild) {
+    body.insertBefore(ionApp, firstChild);
+  } else {
+    body.appendChild(ionApp);
+  }
+}
+function checkMatchDaySelected(day) {
+  // Define the URL you want to send the GET request to
+  const url = "https://example.com/some-page";
+
+  // Send a GET request using the fetch API
+  fetch(url)
+    .then((response) => {
+      // Check if the request was successful (status code 200)
+      if (response.status === 200) {
+        return response.text(); // Parse the response body as text
+      } else {
+        throw new Error("Request failed with status: " + response.status);
+      }
+    })
+    .then((htmlContent) => {
+      // Handle the HTML content returned from the server
+
+      const response = getJsonResponse(responseString);
+      console.log(htmlContent);
+      // You can insert the HTML content into the document, for example:
+      // const container = document.getElementById('some-container-id');
+      // container.innerHTML = htmlContent;
+    })
+    .catch((error) => {
+      // Handle any errors that occurred during the request
+      console.error("Error:", error);
+    });
+}
+function getJsonResponse(responseString) {
+  const startIndex = responseString.indexOf("{");
+  const endIndex = responseString.lastIndexOf("}");
+  const jsonPart = responseString.substring(startIndex, endIndex + 1);
+  return JSON.parse(jsonPart);
+}
+function scrappingSelect(id) {
+  const selectElement = document.querySelectorAll(id)[0];
+
+  // Initialize an array to store the option values and texts
+  const optionsData = [];
+
+  // Loop through each option within the select element
+  for (const option of selectElement.options) {
+    // Extract the value and text of each option
+    const value = option.value;
+    const text = option.textContent;
+
+    // Push the value and text into the optionsData array
+    optionsData.push({ value, text });
+  }
+
+  // Now, optionsData contains an array of objects with the option values and texts
+  return optionsData;
+}
+function createOptionElement(val) {
+  const ionSelectOption = document.createElement("ion-select-option");
+
+  // Set the "value" attribute
+  ionSelectOption.setAttribute("value", val.value);
+
+  // Set the text content of the element
+  ionSelectOption.textContent = val.text;
+  // Now, you can append this element to a parent element, such as a select or ion-select element.
+  // For example, if you have a select element with the ID "mySelect":
+
+  return ionSelectOption;
+}
+function displayTeamNames() {
+  const teamsNamesValues = scrappingSelect("#Fsq");
+  console.log({ teamsNamesValues });
+  const teamNameElement = document.querySelector("#team-name-select");
+  teamsNamesValues.forEach((val) => {
+    teamNameElement.appendChild(createOptionElement(val));
+  });
+}
+function displayMatchDays() {
+  const matchDaysValues = scrappingSelect("#Gio");
+  console.log("Gio", matchDaysValues);
+  const teamNameElement = document.querySelector("#match-day-select");
+  matchDaysValues.forEach((val) => {
+    teamNameElement.appendChild(createOptionElement(val));
+  });
+}
+function listenMobilePassword() {
+  document
+    .querySelector("ion-input#mobile-password")
+    .addEventListener("ionInput", function (event) {
+      console.log({ event });
+      console.log(event.detail.value);
+      // check if password is valid
+      // if it is valid enable button
+    });
+}
+function listenMatchDay() {
+  const select = document.querySelector("ion-select#match-day-select");
+  select.addEventListener("ionChange", (e) => {
+    console.log(`ionChange fired with value: ${e.detail.value}`);
+  });
+}
+function startMobileApp(table) {
+  onLoadSuccess(table);
+  addFilterPlayerButtons();
+  addPlayersList();
+  listenShowFormationModalBtn();
+  listenSupplyPlayers();
+  listenMobilePassword();
+}
 function onLoad() {
+  // addMobileVersion();
   console.log("loaded");
+  displayTeamNames();
+  displayMatchDays();
+  listenMatchDay();
+  // if url have Invia and the day is valid display the table
   // Get a reference to the table element by its ID
   let table = document.getElementById("tabellaDati");
   if (table != null) {
-    onLoadSuccess(table);
-    addFilterPlayerButtons();
-    addPlayersList();
-    listenShowFormationModalBtn();
-    listenSupplyPlayers();
+    startMobileApp(table);
   } else {
     setTimeout(() => onLoad(), 100);
   }
 }
+function clickOnVai(team, day) {
+  console.log({ team });
+  console.log({ day });
+  document.querySelector("#Fsq").value = `${team}`;
+  document.querySelector("#Gio").value = `${day}`;
+  document.getElementById(`Invia`).click();
+}
+function onclickGoButton() {
+  console.log(`click`);
+  const teamValue = document.getElementById(`team-name-select`).value;
+  const matchDayValue = document.getElementById(`match-day-select`).value;
+  console.log(`teamName ${teamValue} matchDayValue ${matchDayValue}`);
+  clickOnVai(teamValue, matchDayValue);
+}
+window.addEventListener("DOMContentLoaded", function () {
+  onLoad();
+});

@@ -33,17 +33,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <style>
-    /*
-        custom css
-        */
-  </style>
-  <script type="module" src="./libs/ionic.esm.js"></script>
-  <script nomodule src="./libs/ionic.js"></script>
-  <link rel="stylesheet" href="libs/css/ionic.bundle.css" />
-  <link rel="stylesheet" href="./fanta-calcio-mobile.css">
-  <script src="./custom-fantacalcio-mobile.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="./custom-ionic.css">
+  <link rel="stylesheet" href="https://www.fantacalciochiampo.it/mobile-libs/css/ionic.bundle.css" />
+  <link rel="stylesheet" href="https://www.fantacalciochiampo.it/mobile-libs/fanta-calcio-mobile.css">
+  <link rel="stylesheet" href="https://www.fantacalciochiampo.it/mobile-libs/custom-ionic.css">
+  <script type="module" src="https://www.fantacalciochiampo.it/mobile-libs/ionic.esm.js"></script>
+  <script nomodule src="https://www.fantacalciochiampo.it/mobile-libs/ionic.js"></script>
+  <script src="https://www.fantacalciochiampo.it/mobile-libs/custom-fantacalcio-mobile.js"
+    type="text/javascript"></script>
 </head>
 
 <body>
@@ -54,6 +50,23 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ios content-ltr hydrated">
+      <div class="container-search-team" style="display: flex;
+                                                                  flex-direction: row;
+                                                                  justify-content: center;">
+        <ion-item style="width: 30%;">
+          <ion-select id="team-name-select" aria-label="Squadra" placeholder="Seleziona squadra">
+          </ion-select>
+        </ion-item>
+        <ion-item style="width: 30%;">
+          <ion-select id="match-day-select" aria-label="Seleziona giornata" placeholder="Seleziona giornata"></ion-select>
+        </ion-item>
+        <ion-item style="width: 30%;">
+          <ion-button onclick="onclickGoButton()">VAI</ion-button>
+        </ion-item>
+      </div>
+      
+      
+      </ion-select>
       <div class="team-table">
         <section class="filters">
           <div class="filters__bar" id="filter-actions">
@@ -62,7 +75,6 @@
         <ion-list class="list__players" id="players-list">
         </ion-list>
       </div>
-
       <div class="soccer-field">
         <div class="field-header">
           <div class="formation" id="current-formation">
@@ -80,7 +92,6 @@
         </div>
         <div class="field-footer">
         </div>
-        <!-- </div> -->
         </div>
         <div class="btn-actions">
           <button id="send-formation-btn">asdadasads</button>
@@ -99,9 +110,11 @@
           </ion-header>
           <ion-content class="ion-padding">
             <ion-list>
-              <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
               <ion-reorder-group id="reseve-list" disabled="false">
               </ion-reorder-group>
+              <ion-item>
+                <ion-input id="mobile-password" label="Password"></ion-input>
+              </ion-item>
             </ion-list>
           </ion-content>
         </ion-modal>

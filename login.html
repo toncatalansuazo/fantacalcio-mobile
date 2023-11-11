@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./libs/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="./libs/fanta-calcio-mobile.css">
+    <link rel="stylesheet" href="./libs/custom-ionic.css">
+    <link rel="stylesheet" href="./libs/custom-login.css">
+    <script type="module" src="./libs/ionic.esm.js"></script>
+    <script nomodule src="./libs/ionic.js"></script>
+</head>
+
+<body>
+    <ion-app>
+        <ion-content>
+            <div class="logo">
+                <img class="logo-img" src="./libs/assets/logo.png" alt="logo fantacalcio Chiampo">
+            </div>
+            <form class="login-form">
+                <div class="input-group">
+                    <div class="full-width-input">
+                        <ion-item>
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <ion-input aria-label="Email" type="email" formControlName="email" required>
+                            </ion-input>
+                        </ion-item>
+
+                        <div class="errors">
+                            <span *ngIf="loginFG.get('email')!.errors!['required']">Email is required</span>
+                            <span *ngIf="loginFG.get('email')!.errors!['email']">Email is invalid</span>
+                        </div>
+                        <ion-item>
+                            <ion-icon name="key-outline"></ion-icon>
+                            <ion-input type="password" aria-label="Password" formControlName="password"
+                                [clearInput]="true" required>
+                            </ion-input>
+                        </ion-item>
+                        <div class="errors">
+                            <span *ngIf="loginFG.get('password')!.errors!['required']">Password is required</span>
+                            <span *ngIf="loginFG.get('password')!.errors!['minlength']">Password needs to be 6
+                                characters</span>
+                        </div>
+                    </div>
+                </div>
+                <ion-button type="submit" expand="block" [disabled]="!loginFG.valid">Log in</ion-button>
+            </form>
+        </ion-content>
+    </ion-app>
+</body>
+
+</html>
