@@ -3,6 +3,7 @@ var players = [];
 var startingLineUp = [];
 var reservePlayers = [];
 var currentRoleFilter = "";
+var isLoaded = false;
 
 function getPlayerInfoFromRoleTdElement(tdElement) {
   const playerRole = tdElement.querySelector("span").textContent;
@@ -80,7 +81,7 @@ function isFormationValid(
     { goalkeeper: 1, defenders: 5, midfielders: 2, forwards: 3 },
     { goalkeeper: 1, defenders: 5, midfielders: 3, forwards: 2 },
     { goalkeeper: 1, defenders: 5, midfielders: 4, forwards: 1 },
-    { goalkeeper: 1, defenders: 6, midfielders: 1, forwards: 3 },
+    { goalkeeper: 1, defenders: 6, midfielders: 1, forwards: 3 }, // is it ok?
     { goalkeeper: 1, defenders: 6, midfielders: 2, forwards: 2 },
     { goalkeeper: 1, defenders: 6, midfielders: 3, forwards: 1 },
     { goalkeeper: 1, defenders: 3, midfielders: 3, forwards: 4 },
@@ -268,13 +269,14 @@ function addPlayerToLineUp(player) {
       message: `Rimuove uno dei giocatore con ruolo ${player.role} se vuoi inserire questo giocatore`,
     });
     return;
+  } else {
+    addPlayer(player);
+    playerItemElement.setAttribute("color", "secondary");
+    addToSoccerField(player);
+    displayCurrentFormation();
+    displaySendButton();
+    ClickGiocatoreRosa(player.id);
   }
-  addPlayer(player);
-  playerItemElement.setAttribute("color", "secondary");
-  addToSoccerField(player);
-  displayCurrentFormation();
-  displaySendButton();
-  ClickGiocatoreRosa(player.id);
 }
 
 function displayCurrentFormation() {
@@ -303,7 +305,8 @@ function removePlayerFromLineUp(player, positionId) {
   removePlayer(positionId);
   removeFromSoccerField(player);
   displayCurrentFormation();
-  ClickGiocatoreFormazione(positionId);
+  let positionInLineUpTable = positionId + 1;
+  ClickGiocatoreFormazione(positionInLineUpTable);
 }
 function removeFromSoccerField(player) {
   const soccerPlayerId = getPlayerAttrIdSoccerField(player);
@@ -414,7 +417,7 @@ function createPlayerIonItem(
 
   // Create h2 element for player name
   const h2 = document.createElement("h2");
-  h2.textContent = playerName + " - " + teamName;
+  h2.textContent = `(${role}) ${playerName} ${teamName.toUpperCase()}`;
 
   // Create p element for stats
   const p = document.createElement("p");
@@ -482,10 +485,21 @@ function addPlayersList() {
   });
 }
 
-function listenShowFormationModalBtn() {
-  const btnSendFormation = document.getElementById("send-formation-btn");
-  btnSendFormation.addEventListener("click", ($event) => {
-    presentReserveModal();
+// function listenShowFormationModalBtn() {
+//   const btnSendFormation = document.getElementById("send-formation-btn");
+//   btnSendFormation.addEventListener("click", ($event) => {
+//     presentReserveModal();
+//   });
+// }
+
+function listenHeaderPage() {
+  let count = 0;
+  document.querySelector("#ion-header-form").addEventListener("click", () => {
+    count++;
+    if (count > 4) {
+      let devButton = document.querySelector("#dev-button");
+      devButton.style = "width: 10%;";
+    }
   });
 }
 
@@ -501,8 +515,9 @@ function cancel() {
 }
 
 function confirm() {
+  selectAllReservePlayers();
   sendMobileFormation();
-  document.querySelector("ion-modal").dismiss(input.value, "confirm");
+  // document.querySelector("ion-modal").dismiss(input.value, "confirm");
 }
 
 function selectAllReservePlayers() {
@@ -519,17 +534,19 @@ function unSelectAllReservePlayers() {
 }
 
 function sendMobileFormation() {
-  localStorage.setItem("fantacalcio-p", "washington");
-  const password = localStorage.getItem("fantacalcio-p");
-  if (password == null) {
-    presentAlert({
-      header: `Password non trovata`,
-      message: `Ricaraca la pagina`,
-    });
-    location.reload();
-  }
-  document.querySelector("input[name='password']").value = password;
+  const fantaPassword = document.querySelector(`#mobile-password`).value;
+  document.querySelector("input[name='password']").value = fantaPassword;
   document.querySelector("form#formInvio").submit();
+
+  // localStorage.setItem("fantacalcio-p", "washington");
+  // const password = localStorage.getItem("fantacalcio-p");
+  // if (password == null) {
+  //   presentAlert({
+  //     header: `Password non trovata`,
+  //     message: `Ricaraca la pagina`,
+  //   });
+  //   location.reload();
+  // }
 }
 
 function listenSupplyPlayers() {
@@ -538,38 +555,56 @@ function listenSupplyPlayers() {
   reorderGroup.addEventListener("ionItemReorder", (data) => {
     // The `from` and `to` properties contain the index of the item
     // when the drag started and ended, respectively
-    console.log("Before complete", reservePlayers);
-
+    let itemsIndex = [];
+    for (let i = 0; i < reservePlayers.length; i++) {
+      // const element = array[i];
+      itemsIndex.push(i);
+    }
+    console.log("Before complete reservePlayers = ", reservePlayers);
+    console.log("Before complete itemsIndex = ", itemsIndex);
     // Finish the reorder and position the item in the DOM based on
     // where the gesture ended. Update the reservePlayers variable to the
     // new order of reservePlayers
-    data.detail.complete();
+    data.detail.complete(itemsIndex);
+    let tmpArray = [];
+    for (let i = 0; i < itemsIndex.length; i++) {
+      const elementIndex = itemsIndex[i];
+      tmpArray.push(reservePlayers[elementIndex]);
+    }
+    reservePlayers = tmpArray;
 
     // Reorder the items in the DOM
     // reorderItems(items);
-    console.log({ data });
+    console.log("after complete itemsIndex = ", itemsIndex);
+    console.log("after complete reservePlayers = ", reservePlayers);
+    reorderPlayers(reservePlayers);
     // After complete is called the items will be in the new order
-    const from = data.detail.from;
-    const to = data.detail.to;
-    const isMovingDown = from < to;
-    if (isMovingDown) {
-      for (let i = from; i < to; i++) {
-        const element = Object.assign({}, reservePlayers[i]);
-        const elementAux = Object.assign({}, reservePlayers[i + 1]);
-        reservePlayers[i] = elementAux;
-        reservePlayers[i + 1] = element;
-      }
-    } else {
-      for (let i = from; i > to; i--) {
-        const element = Object.assign({}, reservePlayers[i]);
-        const elementAux = Object.assign({}, reservePlayers[i - 1]);
-        reservePlayers[i] = elementAux;
-        reservePlayers[i - 1] = element;
-      }
-    }
-    console.log("After complete", reservePlayers);
-    selectAllReservePlayers();
+    // const from = data.detail.from;
+    // const to = data.detail.to;
+    // const isMovingDown = from < to;
+    // if (isMovingDown) {
+    //   for (let i = from; i < to; i++) {
+    //     const element = Object.assign({}, reservePlayers[i]);
+    //     const elementAux = Object.assign({}, reservePlayers[i + 1]);
+    //     reservePlayers[i] = elementAux;
+    //     reservePlayers[i + 1] = element;
+    //   }
+    // } else {
+    //   for (let i = from; i > to; i--) {
+    //     const element = Object.assign({}, reservePlayers[i]);
+    //     const elementAux = Object.assign({}, reservePlayers[i - 1]);
+    //     reservePlayers[i] = elementAux;
+    //     reservePlayers[i - 1] = element;
+    //   }
+    // }
+    // console.log("After complete", reservePlayers);
   });
+
+  function reorderPlayers(reservePlayers) {
+    reorderGroup.replaceChildren();
+    clearReservePlayers();
+    displayReservePlayers();
+  }
 }
 function addMobileVersion() {
   console.log("addMobileVersion");
@@ -732,11 +767,19 @@ function displayMatchDays() {
   });
 }
 function listenMobilePassword() {
+  const finishFormationBtn = document.querySelector("#finish-formation-btn");
   document
     .querySelector("ion-input#mobile-password")
     .addEventListener("ionInput", function (event) {
       console.log({ event });
       console.log(event.detail.value);
+      const password = event.detail.value;
+      if (password.length > 1) {
+        finishFormationBtn.removeAttribute("disabled");
+      } else {
+        finishFormationBtn.setAttribute("disabled", true);
+      }
+
       // check if password is valid
       // if it is valid enable button
     });
@@ -747,20 +790,42 @@ function listenMatchDay() {
     console.log(`ionChange fired with value: ${e.detail.value}`);
   });
 }
+function listenEyePasswordModal() {
+  console.log(`listenEyePasswordModal`);
+  const mobilePasswordInput = document.querySelector("#mobile-password");
+  const eyeIconModal = document.querySelector("#eye-icon-modal");
+  eyeIconModal.addEventListener("click", () => {
+    console.log(`click in eye`);
+    const typeMobileInput = mobilePasswordInput.getAttribute("type");
+    if (typeMobileInput === "password") {
+      mobilePasswordInput.removeAttribute("type");
+    } else {
+      mobilePasswordInput.setAttribute("type", "password");
+    }
+  });
+}
 function startMobileApp(table) {
+  if (isLoaded) {
+    return;
+  }
+  isLoaded = true;
+  console.log("start mobile");
   onLoadSuccess(table);
   addFilterPlayerButtons();
   addPlayersList();
-  listenShowFormationModalBtn();
+  // listenShowFormationModalBtn();
   listenSupplyPlayers();
   listenMobilePassword();
+  listenEyePasswordModal();
 }
+
 function onLoad() {
   // addMobileVersion();
   console.log("loaded");
   displayTeamNames();
   displayMatchDays();
   listenMatchDay();
+  listenHeaderPage();
   // if url have Invia and the day is valid display the table
   // Get a reference to the table element by its ID
   let table = document.getElementById("tabellaDati");
@@ -783,6 +848,13 @@ function onclickGoButton() {
   const matchDayValue = document.getElementById(`match-day-select`).value;
   console.log(`teamName ${teamValue} matchDayValue ${matchDayValue}`);
   clickOnVai(teamValue, matchDayValue);
+}
+function devMode() {
+  var element = document.querySelector("body > ion-app"); // Replace "yourElementId" with the actual ID of your element
+  element.classList.remove("ion-page");
+  element.classList.add("ion-page-dev");
+  let body = document.querySelector("body");
+  body.style = body.style + ";display: flex;";
 }
 window.addEventListener("DOMContentLoaded", function () {
   onLoad();

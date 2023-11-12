@@ -38,13 +38,28 @@
   <link rel="stylesheet" href="https://www.fantacalciochiampo.it/mobile-libs/custom-ionic.css">
   <script type="module" src="https://www.fantacalciochiampo.it/mobile-libs/ionic.esm.js"></script>
   <script nomodule src="https://www.fantacalciochiampo.it/mobile-libs/ionic.js"></script>
-  <script src="https://www.fantacalciochiampo.it/mobile-libs/custom-fantacalcio-mobile.js"
+  <script src="./libs/custom-fantacalcio-mobile.js"
     type="text/javascript"></script>
 </head>
+<style>
+  .ion-page-dev {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    /* position: absolute; */
+    flex-direction: column;
+    justify-content: space-between;
+    contain: layout size style;
+    z-index: 0;
+    width: 50%;
+  }
+</style>
 
 <body>
   <ion-app class="ios ion-page hydrated">
-    <ion-header>
+    <ion-header id="ion-header-form">
       <ion-toolbar>
         <ion-title>Invio formazione</ion-title>
       </ion-toolbar>
@@ -62,6 +77,9 @@
         </ion-item>
         <ion-item style="width: 30%;">
           <ion-button onclick="onclickGoButton()">VAI</ion-button>
+        </ion-item>
+        <ion-item id="dev-button" style="display: none;">
+          <ion-button onclick="devMode()">DEV</ion-button>
         </ion-item>
       </div>
       
@@ -93,9 +111,6 @@
         <div class="field-footer">
         </div>
         </div>
-        <div class="btn-actions">
-          <button id="send-formation-btn">asdadasads</button>
-        </div>
         <ion-modal trigger="open-modal">
           <ion-header>
             <ion-toolbar>
@@ -104,17 +119,18 @@
               </ion-buttons>
               <ion-title>Confirmare formazione</ion-title>
               <ion-buttons slot="end">
-                <ion-button onclick="confirm()" strong="true">Confirm</ion-button>
+                <ion-button id="finish-formation-btn" disabled="true" onclick="confirm()" strong="true">Confirm</ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
           <ion-content class="ion-padding">
             <ion-list>
+              <ion-item>
+                <ion-input fill="solid" type="password" id="mobile-password" label="Password"></ion-input>
+                <ion-icon id="eye-icon-modal" style="cursor: pointer;" name="eye"></ion-icon>
+              </ion-item>
               <ion-reorder-group id="reseve-list" disabled="false">
               </ion-reorder-group>
-              <ion-item>
-                <ion-input id="mobile-password" label="Password"></ion-input>
-              </ion-item>
             </ion-list>
           </ion-content>
         </ion-modal>
