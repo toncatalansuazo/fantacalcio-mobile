@@ -4,6 +4,8 @@ var startingLineUp = [];
 var reservePlayers = [];
 var currentRoleFilter = "";
 var isLoaded = false;
+var retriesToShowPage = 10;
+// v20231115
 
 function getPlayerInfoFromRoleTdElement(tdElement) {
   const playerRole = tdElement.querySelector("span").textContent;
@@ -612,62 +614,81 @@ function addMobileVersion() {
   const ionApp = document.createElement("ion-app");
   ionApp.classList.add("ios", "ion-page", "hydrated");
 
-  ionApp.innerHTML = `
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Invio formazione</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ios content-ltr hydrated">
-      <div class="team-table">
-        <section class="filters">
-          <div class="filters__bar" id="filter-actions">
-          </div>
-        </section>
-        <ion-list class="list__players" id="players-list">
-        </ion-list>
+  ionApp.innerHTML = `<ion-app class="ios ion-page hydrated">
+  <ion-header id="ion-header-form">
+    <ion-toolbar>
+      <ion-title>Invio formazione</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ios content-ltr hydrated">
+    <div class="container-search-team" style="display: flex;flex-direction: row;justify-content: center;">
+      <ion-item style="width: 30%;">
+        <ion-select id="team-name-select" aria-label="Squadra" placeholder="Seleziona squadra">
+        </ion-select>
+      </ion-item>
+      <ion-item style="width: 30%;">
+        <ion-select id="match-day-select" aria-label="Seleziona giornata" placeholder="Seleziona giornata"></ion-select>
+      </ion-item>
+      <ion-item style="width: 30%;">
+        <ion-button style="width: 100%;" onclick="onclickGoButton()">VAI</ion-button>
+      </ion-item>
+      <ion-item id="dev-button" style="width: 30%;display: none;">
+        <ion-button onclick="devMode()">DEV</ion-button>
+      </ion-item>
+    </div>
+    
+    </ion-select>
+    <div class="team-table">
+      <section class="filters">
+        <div class="filters__bar" id="filter-actions">
+        </div>
+      </section>
+      <ion-list class="list__players" id="players-list">
+      </ion-list>
+    </div>
+    <div class="soccer-field">
+      <div class="field-header">
+        <div class="formation" id="current-formation">
+        </div>
       </div>
-      <div class="soccer-field">
-        <div class="field-header">
-          <div class="formation" id="current-formation">
-          </div>
+      <div class="field-main">
+        <div class="field-section" id="field-goalkeeper">
         </div>
-        <div class="field-main">
-          <div class="field-section" id="field-goalkeeper">
-          </div>
-          <div class="field-section" id="field-defenders">
-          </div>
-          <div class="field-section" id="field-midfielders">
-          </div>
-          <div class="field-section" id="field-forwards">
-          </div>
+        <div class="field-section" id="field-defenders">
         </div>
-        <div class="field-footer">
+        <div class="field-section" id="field-midfielders">
         </div>
+        <div class="field-section" id="field-forwards">
         </div>
-        <div class="btn-actions">
-          <button id="send-formation-btn">asdadasads</button>
-        </div>
-        <ion-modal trigger="open-modal">
-          <ion-header>
-            <ion-toolbar>
-              <ion-buttons slot="start">
-                <ion-button onclick="cancel()">Cancel</ion-button>
-              </ion-buttons>
-              <ion-title>Confirmare formazione</ion-title>
-              <ion-buttons slot="end">
-                <ion-button onclick="confirm()" strong="true">Confirm</ion-button>
-              </ion-buttons>
-            </ion-toolbar>
-          </ion-header>
-          <ion-content class="ion-padding">
-            <ion-list>
-              <ion-reorder-group id="reseve-list" disabled="false">
-              </ion-reorder-group>
-            </ion-list>
-          </ion-content>
-        </ion-modal>
-    </ion-content>`;
+      </div>
+      <div class="field-footer">
+      </div>
+      </div>
+      <ion-modal trigger="open-modal">
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button onclick="cancel()">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title>Confirmare formazione</ion-title>
+            <ion-buttons slot="end">
+              <ion-button id="finish-formation-btn" disabled="true" onclick="confirm()" strong="true">Confirm</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-list>
+            <ion-item>
+              <ion-input fill="solid" type="password" id="mobile-password" label="Password"></ion-input>
+              <ion-icon id="eye-icon-modal" style="cursor: pointer;" name="eye"></ion-icon>
+            </ion-item>
+            <ion-reorder-group id="reseve-list" disabled="false">
+            </ion-reorder-group>
+          </ion-list>
+        </ion-content>
+      </ion-modal>
+  </ion-content>
+</ion-app>`;
 
   // Continue creating and appending other elements in a similar manner.
 
@@ -817,22 +838,56 @@ function startMobileApp(table) {
   listenSupplyPlayers();
   listenMobilePassword();
   listenEyePasswordModal();
+  replaceOnActionInFormsGeneratedWithJS();
+}
+function getQueryParams() {
+  var urlParams = new URLSearchParams(window.location.url);
+
+  // Get individual query parameters
+  var fsq = urlParams.get("Fsq");
+  var gio = urlParams.get("Gio");
+  var invia = urlParams.get("Invia");
+
+  return { teamSelected: fsq, daySelected: gio };
+}
+function selectTeamAndDaySelectedPreviouslyOnSearch() {
+  const selectedValues = getQueryParams();
+  document.querySelector(`#team-name-select`).value =
+    selectedValues.teamSelected;
+  document.querySelector(`#match-day-select`).value =
+    selectedValues.daySelected;
+}
+
+function replaceOnActionInFormsGeneratedWithJS() {
+  const formSendFormation = document.querySelector("#formInvio");
+  formSendFormation.setAttribute(
+    "action",
+    "./../" + formSendFormation.getAttribute("action")
+  );
 }
 
 function onLoad() {
-  // addMobileVersion();
   console.log("loaded");
+  addMobileVersion();
+  listenHeaderPage();
+
   displayTeamNames();
   displayMatchDays();
   listenMatchDay();
-  listenHeaderPage();
   // if url have Invia and the day is valid display the table
   // Get a reference to the table element by its ID
   let table = document.getElementById("tabellaDati");
   if (table != null) {
     startMobileApp(table);
   } else {
-    setTimeout(() => onLoad(), 100);
+    retriesToShowPage++;
+    if (retriesToShowPage < 10) {
+      setTimeout(() => onLoad(), 100);
+    } else {
+      alert(
+        "Prova a selezionare una nuova data oppure verifica che ancora sei a tempo per inviare una formazione"
+      );
+    }
   }
 }
 function clickOnVai(team, day) {
