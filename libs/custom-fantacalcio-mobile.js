@@ -538,7 +538,8 @@ function cancel() {
   document.querySelector("ion-modal").dismiss(null, "cancel");
 }
 
-function confirm() {
+function confirm($event) {
+  unSelectAllReservePlayersInFantaCalcioVersion();
   selectAllReservePlayers();
   sendMobileFormation();
   // document.querySelector("ion-modal").dismiss(input.value, "confirm");
@@ -550,17 +551,35 @@ function selectAllReservePlayers() {
     ClickGiocatoreRosa(player.id);
   }
 }
-function unSelectAllReservePlayers() {
-  for (let i = 0; i < reservePlayers.length; i++) {
-    const player = reservePlayers[i];
-    ClickGiocatoreFormazione(player.id);
+function unSelectAllReservePlayersInFantaCalcioVersion() {
+  const isPlayerSelectedInTable = (r) => r != 0;
+  const areSubstitutePlayerSelected = (substitutePlayers) =>
+    substitutePlayers.filter(isPlayerSelectedInTable).length > 0;
+  while (
+    riserveInserite.length > 0 &&
+    areSubstitutePlayerSelected(riserveInserite)
+  ) {
+    /**
+     * when we remove a player from the reserve lift, the lift shift one position
+     * so the player in position 13 go down to position 12, so always there is going
+     * to be a player in position 12 if there are "riserveInserite"
+     */
+    var idG = arrFormazione[12];
+    if (idG == null) {
+      return;
+    }
+    var gg = arrInvioFormazione[idG];
+    RimuoviRiserva(gg);
   }
 }
 
 function sendMobileFormation() {
   const fantaPassword = document.querySelector(`#mobile-password`).value;
   document.querySelector("input[name='password']").value = fantaPassword;
-  document.querySelector('#formInvio input[type="submit"]');
+  document
+    .querySelector("#formInvio")
+    .setAttribute("onsubmit", "return sendFormationMobileVersion();");
+  document.querySelector('#formInvio input[type="submit"]').click();
 }
 
 function listenSupplyPlayers() {
@@ -629,7 +648,7 @@ function addMobileVersion() {
         <ion-select id="match-day-select" aria-label="Seleziona giornata" placeholder="Seleziona giornata"></ion-select>
       </ion-item>
       <ion-item style="width: 30%;flex-direction: column-reverse;display: flex;">
-        <ion-button style="width: 100%;" onclick="onclickGoButton()">VAI</ion-button>
+        <ion-button style="width: 100%;" onclick="onclickSearchTeamAndMatchDay()">VAI</ion-button>
       </ion-item>
       <ion-item id="dev-button" class="hidden-cs">
         <ion-button onclick="devMode()">DEV</ion-button>
@@ -847,7 +866,15 @@ function startMobileApp(table) {
   listenEyePasswordModal();
   replaceOnActionInFormsGeneratedWithJS();
   // cleanAllSelectedPlayerInTable();
-  loadPlayerAlreadySelected();
+  try {
+    loadPlayerAlreadySelected();
+  } catch (error) {
+    presentAlert({
+      header: `Error`,
+      message: `Giocatori selezionati precedentemente non caricati, re-seleziona la tua formazione.`,
+    });
+    cleanAllSelectedPlayerInTable();
+  }
 }
 function getQueryParams() {
   var urlString = window.location.href;
@@ -883,10 +910,10 @@ function clickOnVai(team, day) {
   document.querySelector("#Fsq").value = `${team}`;
   document.querySelector("#Gio").value = `${day}`;
   document.getElementById(`Invia`).click();
-  presentAlert({ header: "Formazione Inviata", buttons: ["OK"] });
 }
 
-function onclickGoButton() {
+// search player and team given values from select elements onclickGoButton
+function onclickSearchTeamAndMatchDay() {
   console.log(`click`);
   const teamValue = document.getElementById(`team-name-select`).value;
   const matchDayValue = document.getElementById(`match-day-select`).value;
@@ -951,6 +978,7 @@ function loadPlayerAlreadySelected() {
     // no player selected for current day
     return;
   }
+  let lastIposition = 0;
   for (let i = 0; i < arrFormazioni.length; i++) {
     const playerPreviouslySelected = arrFormazioni[i];
     if (playerPreviouslySelected == null) {
@@ -976,13 +1004,202 @@ function loadPlayerAlreadySelected() {
     const areAllPlayerInLineUpAdded = startingLineUp.length === 11;
     if (!areAllPlayerInLineUpAdded) {
       addPlayerToLineUp(playerFound, false);
+      lastIposition = i;
     } else {
       console.log("add it in the reserve array", playerFound);
+      try {
+        sortReservePlayerUsingPreviousSelection(
+          i - (lastIposition + 1),
+          playerFound
+        );
+      } catch (e) {
+        presentAlert({
+          header: "Atenzione",
+          message: "Ricorda ordinare la panchina",
+        });
+      }
     }
-    // show it as selected in html
-
-    console.log("player found", playersFound);
   }
+  // display in html
+  clearReservePlayers();
+  displayReservePlayers();
+  console.log("Previous formation laoded. reservePlayers = ", reservePlayers);
+  console.log("Previous formation laoded. startingLineUp = ", startingLineUp);
+}
+function sortReservePlayerUsingPreviousSelection(
+  newPositionInReserve,
+  playerFound
+) {
+  if (playerFound == null) {
+    throw new Error(`reserve player to sort is null ${playerFound}`);
+  }
+  let currentPositionInReserve = reservePlayers.findIndex(
+    (p) => p.id === playerFound.id
+  );
+  let tmpCopyOfPlayerToMoveBackInArray = Object.assign(
+    {},
+    reservePlayers[newPositionInReserve]
+  );
+  reservePlayers[newPositionInReserve] = playerFound;
+  reservePlayers[currentPositionInReserve] = tmpCopyOfPlayerToMoveBackInArray;
+}
+
+function sendFormationMobileVersion() {
+  // Non invia la formazione se nessun incontro è stato selezionato
+  var incontriSelezionati = 0;
+  for (var i = 1; i <= incontriDisponibili.length; ++i)
+    if (document.getElementById("incontro" + i).checked) incontriSelezionati++;
+  if (incontriSelezionati === 0) {
+    presentAlert({
+      header: "Error in formazione",
+      message: "Impossibile inviare la formazione: nessun incontro selezionato",
+    });
+    return false;
+  }
+
+  // Non invia la formazione se non è corretta
+  if (!checkFormationMobileVersion()) return false;
+
+  // Genera dati per invio formazione per ciascun incontro selezionato
+  var formazioni = [];
+  var datiTelegram = "";
+  for (i = 1; i <= incontriDisponibili.length; ++i) {
+    // Salta l'incontro (competizione) se non è selezionato
+    if (!document.getElementById("incontro" + i).checked) continue;
+    var ii = arrIncontri[document.getElementById("incontro" + i).value];
+
+    // Oggetto contenente i dati della formazione
+    var formazione = {
+      idIncontro: ii.ID,
+      descrizione: ii.Descrizione,
+    };
+
+    // Genera dati per invio mail
+    if (inviaEMail) {
+      formazione.datiEMail = [];
+      var destinatari = OttieneDestinatari(ii);
+      var m;
+      if (destinatari.completa.length !== 0) {
+        m = GeneraEMailCompleta(ii);
+        m.destinatari = destinatari.completa;
+        formazione.datiEMail.push(m);
+      }
+      if (destinatari.ridotta.length !== 0) {
+        m = GeneraEMailRidotta(ii);
+        m.destinatari = destinatari.ridotta;
+        formazione.datiEMail.push(m);
+      }
+    }
+
+    // Genera dati per salvataggio sul sito
+    if (salvaSuSito) {
+      formazione.datiSalvataggio = GeneraDatiSalvataggioSuSito(ii);
+    }
+
+    // Genera dati per inoltro a Telegram
+    if (inoltraATelegram) {
+      datiTelegram = GeneraDatiTelegram(ii, datiTelegram);
+    }
+
+    // Aggiunge formazione
+    formazioni.push(formazione);
+  }
+  if (datiTelegram !== "") formazioni[0].datiTelegram = datiTelegram;
+
+  // Compila gli altri dati ed invia la form
+  document.getElementById("fi_formazioni").value = JSON.stringify(formazioni);
+  document.getElementById("fi_idSquadra").value = cFsq;
+  document.getElementById("fi_giornataDiA").value = cGio;
+  window.open(
+    "",
+    "invformWindow",
+    "width=600,height=240,screenX=20,screenY=20"
+  );
+  presentAlert({
+    header: `Formazione Inviata`,
+    message: `Verifica la tua email.`,
+    buttons: ["OK"],
+  });
+
+  return true;
+}
+function checkFormationMobileVersion() {
+  // Controlla titolari inseriti
+  if (titolariInseriti !== 11) {
+    presentAlert({
+      header: "Errore in formazione",
+      message:
+        "Impossibile inviare la formazione: uno o più titolari non inseriti",
+    });
+    return false;
+  }
+
+  // Controlla ruoli delle riserve inserite
+  if (regolaPanchina) {
+    var ruoliSenzaRiserve = 0;
+    for (var i = 1; i <= 4; ++i)
+      if (riserveInserite[i] === 0) ruoliSenzaRiserve++;
+    if (
+      ruoliSenzaRiserve >
+      totaleNumeroMassimoRiserve - totaleRiserveInserite
+    ) {
+      presentAlert({
+        header: "Errore in formazione",
+        message:
+          "Impossibile inviare la formazione: è necessario inserire almeno una riserva per ruolo",
+      });
+      return false;
+    }
+  }
+
+  // Determina se incontri selezionati richiedono rigoristi
+  controllaRigoristi = false;
+  if (!mostraRigoristi) return true;
+  for (var i = 1; i <= incontriDisponibili.length && !controllaRigoristi; i++)
+    if (document.getElementById("incontro" + i).checked) {
+      var ii = arrIncontri[document.getElementById("incontro" + i).value];
+      controllaRigoristi = ii.Rigoristi;
+    }
+  if (!controllaRigoristi) return true;
+
+  // Imposta rigoristi negli oggetti di arrInvioFormazione
+  for (i = 1; i <= 11 + totaleNumeroMassimoRiserve; i++)
+    if (arrFormazione[i] >= 0)
+      arrInvioFormazione[arrFormazione[i]].Rigorista = arrRigoristi[i];
+
+  // Controlla duplicati fra i rigoristi
+  for (i = 1; i <= 11 + totaleNumeroMassimoRiserve - 1; i++)
+    for (var j = i + 1; j <= 11 + totaleNumeroMassimoRiserve; j++)
+      if (
+        arrFormazione[i] >= 0 &&
+        arrFormazione[j] >= 0 &&
+        arrRigoristi[i] === arrRigoristi[j]
+      ) {
+        presentAlert({
+          header: "Errore in formazione",
+          message:
+            "Impossibile inviare la formazione: ordine rigoristi non valido (duplicato)",
+        });
+        return false;
+      }
+
+  // Controlla regola dei portieri
+  if (regolaRigoristi)
+    for (i = 1; i <= 11 + totaleNumeroMassimoRiserve; i++)
+      if (
+        arrFormazione[i] >= 0 &&
+        arrRigoristi[i] < 11 &&
+        arrInvioFormazione[arrFormazione[i]].Ruolo === 1
+      ) {
+        presentAlert({
+          header: "Errore in formazione",
+          message:
+            "Impossibile inviare la formazione: ordine rigoristi non valido (portiere < 11°)",
+        });
+        return false;
+      }
+
+  return true;
 }
 
 function onLoad() {
