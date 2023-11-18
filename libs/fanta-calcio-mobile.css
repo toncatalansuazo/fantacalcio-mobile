@@ -157,3 +157,9 @@
   z-index: 0;
   width: 50%;
 }
+.hidden-cs {
+  display: none;
+}
+.dev-btn {
+  width: 10%;
+}

@@ -1,10 +1,29 @@
 var txxsRowsPlayers;
+/**
+ * {
+      id: playerId,
+      role: (playerRole || "").trim(),
+      spanRoleIdElement,
+      name: playerName,
+      teamPlayerName,
+      oponentTeamName,
+      affValue,
+      mvtValue,
+      fmtValue,
+      mvuValue,
+      fmuValue,
+      getStats: function () {
+        return `Aff: ${this.affValue} MVt: ${this.mvtValue} FMt: ${this.fmtValue} MVu: ${this.mvuValue} FMu: ${this.fmuValue}`;
+      
+ */
 var players = [];
 var startingLineUp = [];
 var reservePlayers = [];
 var currentRoleFilter = "";
 var isLoaded = false;
 var retriesToShowPage = 10;
+var mobileVersionLoaded = false;
+var intervalRemainingTimeId;
 // v20231115
 
 function getPlayerInfoFromRoleTdElement(tdElement) {
@@ -73,21 +92,30 @@ function isFormationValid(
   midfielders = 0,
   forwards = 0
 ) {
+  // const formations = [
+  //   { goalkeeper: 1, defenders: 3, midfielders: 4, forwards: 3 },
+  //   { goalkeeper: 1, defenders: 3, midfielders: 5, forwards: 2 },
+  //   { goalkeeper: 1, defenders: 3, midfielders: 6, forwards: 1 },
+  //   { goalkeeper: 1, defenders: 4, midfielders: 3, forwards: 3 },
+  //   { goalkeeper: 1, defenders: 4, midfielders: 4, forwards: 2 },
+  //   { goalkeeper: 1, defenders: 4, midfielders: 5, forwards: 1 },
+  //   { goalkeeper: 1, defenders: 5, midfielders: 2, forwards: 3 },
+  //   { goalkeeper: 1, defenders: 5, midfielders: 3, forwards: 2 },
+  //   { goalkeeper: 1, defenders: 5, midfielders: 4, forwards: 1 },
+  //   { goalkeeper: 1, defenders: 6, midfielders: 1, forwards: 3 }, // is it ok?
+  //   { goalkeeper: 1, defenders: 6, midfielders: 2, forwards: 2 },
+  //   { goalkeeper: 1, defenders: 6, midfielders: 3, forwards: 1 },
+  //   { goalkeeper: 1, defenders: 3, midfielders: 3, forwards: 4 },
+  //   { goalkeeper: 1, defenders: 4, midfielders: 2, forwards: 4 },
+  // ];
   const formations = [
-    { goalkeeper: 1, defenders: 3, midfielders: 4, forwards: 3 },
-    { goalkeeper: 1, defenders: 3, midfielders: 5, forwards: 2 },
-    { goalkeeper: 1, defenders: 3, midfielders: 6, forwards: 1 },
+    { goalkeeper: 1, defenders: 3, midfielders: 3, forwards: 4 },
     { goalkeeper: 1, defenders: 4, midfielders: 3, forwards: 3 },
     { goalkeeper: 1, defenders: 4, midfielders: 4, forwards: 2 },
     { goalkeeper: 1, defenders: 4, midfielders: 5, forwards: 1 },
-    { goalkeeper: 1, defenders: 5, midfielders: 2, forwards: 3 },
     { goalkeeper: 1, defenders: 5, midfielders: 3, forwards: 2 },
     { goalkeeper: 1, defenders: 5, midfielders: 4, forwards: 1 },
-    { goalkeeper: 1, defenders: 6, midfielders: 1, forwards: 3 }, // is it ok?
-    { goalkeeper: 1, defenders: 6, midfielders: 2, forwards: 2 },
     { goalkeeper: 1, defenders: 6, midfielders: 3, forwards: 1 },
-    { goalkeeper: 1, defenders: 3, midfielders: 3, forwards: 4 },
-    { goalkeeper: 1, defenders: 4, midfielders: 2, forwards: 4 },
   ];
   return (
     formations.filter(
@@ -198,11 +226,7 @@ function addToSoccerField(player) {
     playerAttributes.atrrId
   );
 }
-function displaySendButton() {
-  if (startingLineUp.length === 11) {
-    console.log(`display sent button`);
-  }
-}
+
 async function presentAlert({
   header = "Alert",
   subHeader = "",
@@ -257,7 +281,7 @@ function clearReservePlayers() {
   );
   reservePlayerList.innerHTML = ``;
 }
-function addPlayerToLineUp(player) {
+function addPlayerToLineUp(player, callClickGiocatoreRosa = true) {
   const playerItemElement = getPlayerItemElement(player.id);
   const playerIndex = startingLineUp.findIndex((p) => p.id === player.id);
   const isAlreadyAdded = playerIndex !== -1;
@@ -276,8 +300,10 @@ function addPlayerToLineUp(player) {
     playerItemElement.setAttribute("color", "secondary");
     addToSoccerField(player);
     displayCurrentFormation();
-    displaySendButton();
-    ClickGiocatoreRosa(player.id);
+
+    if (callClickGiocatoreRosa) {
+      ClickGiocatoreRosa(player.id);
+    }
   }
 }
 
@@ -487,20 +513,16 @@ function addPlayersList() {
   });
 }
 
-// function listenShowFormationModalBtn() {
-//   const btnSendFormation = document.getElementById("send-formation-btn");
-//   btnSendFormation.addEventListener("click", ($event) => {
-//     presentReserveModal();
-//   });
-// }
-
 function listenHeaderPage() {
   let count = 0;
   document.querySelector("#ion-header-form").addEventListener("click", () => {
     count++;
+    console.log("dev count " + count);
     if (count > 4) {
+      console.log("activated dev ");
       let devButton = document.querySelector("#dev-button");
-      devButton.style = "width: 10%;";
+      devButton.classList.remove("hidden-cs");
+      devButton.classList.add("dev-btn");
     }
   });
 }
@@ -538,17 +560,7 @@ function unSelectAllReservePlayers() {
 function sendMobileFormation() {
   const fantaPassword = document.querySelector(`#mobile-password`).value;
   document.querySelector("input[name='password']").value = fantaPassword;
-  document.querySelector("form#formInvio").submit();
-
-  // localStorage.setItem("fantacalcio-p", "washington");
-  // const password = localStorage.getItem("fantacalcio-p");
-  // if (password == null) {
-  //   presentAlert({
-  //     header: `Password non trovata`,
-  //     message: `Ricaraca la pagina`,
-  //   });
-  //   location.reload();
-  // }
+  document.querySelector('#formInvio input[type="submit"]');
 }
 
 function listenSupplyPlayers() {
@@ -580,26 +592,6 @@ function listenSupplyPlayers() {
     console.log("after complete itemsIndex = ", itemsIndex);
     console.log("after complete reservePlayers = ", reservePlayers);
     reorderPlayers(reservePlayers);
-    // After complete is called the items will be in the new order
-    // const from = data.detail.from;
-    // const to = data.detail.to;
-    // const isMovingDown = from < to;
-    // if (isMovingDown) {
-    //   for (let i = from; i < to; i++) {
-    //     const element = Object.assign({}, reservePlayers[i]);
-    //     const elementAux = Object.assign({}, reservePlayers[i + 1]);
-    //     reservePlayers[i] = elementAux;
-    //     reservePlayers[i + 1] = element;
-    //   }
-    // } else {
-    //   for (let i = from; i > to; i--) {
-    //     const element = Object.assign({}, reservePlayers[i]);
-    //     const elementAux = Object.assign({}, reservePlayers[i - 1]);
-    //     reservePlayers[i] = elementAux;
-    //     reservePlayers[i - 1] = element;
-    //   }
-    // }
-    // console.log("After complete", reservePlayers);
   });
 
   function reorderPlayers(reservePlayers) {
@@ -610,14 +602,21 @@ function listenSupplyPlayers() {
 }
 function addMobileVersion() {
   console.log("addMobileVersion");
+  if (mobileVersionLoaded) {
+    return;
+  }
+  mobileVersionLoaded = true;
   // Create ion-app element
   const ionApp = document.createElement("ion-app");
   ionApp.classList.add("ios", "ion-page", "hydrated");
 
-  ionApp.innerHTML = `<ion-app class="ios ion-page hydrated">
+  ionApp.innerHTML = `
   <ion-header id="ion-header-form">
     <ion-toolbar>
-      <ion-title>Invio formazione</ion-title>
+      <ion-title>
+        Invio formazione 
+        <div id="remainning-time"></div>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ios content-ltr hydrated">
@@ -629,10 +628,10 @@ function addMobileVersion() {
       <ion-item style="width: 30%;">
         <ion-select id="match-day-select" aria-label="Seleziona giornata" placeholder="Seleziona giornata"></ion-select>
       </ion-item>
-      <ion-item style="width: 30%;">
+      <ion-item style="width: 30%;flex-direction: column-reverse;display: flex;">
         <ion-button style="width: 100%;" onclick="onclickGoButton()">VAI</ion-button>
       </ion-item>
-      <ion-item id="dev-button" style="width: 30%;display: none;">
+      <ion-item id="dev-button" class="hidden-cs">
         <ion-button onclick="devMode()">DEV</ion-button>
       </ion-item>
     </div>
@@ -688,7 +687,7 @@ function addMobileVersion() {
         </ion-content>
       </ion-modal>
   </ion-content>
-</ion-app>`;
+`;
 
   // Continue creating and appending other elements in a similar manner.
 
@@ -704,6 +703,11 @@ function addMobileVersion() {
   } else {
     body.appendChild(ionApp);
   }
+  onDomMobileLoaded();
+}
+
+function onDomMobileLoaded() {
+  selectTeamAndDaySelectedPreviouslyOnSearch();
 }
 function checkMatchDaySelected(day) {
   // Define the URL you want to send the GET request to
@@ -831,7 +835,10 @@ function startMobileApp(table) {
   }
   isLoaded = true;
   console.log("start mobile");
+  showTimer();
   onLoadSuccess(table);
+  // At this point all player were loaded
+  // if you need to add a function, pleace it after this comment
   addFilterPlayerButtons();
   addPlayersList();
   // listenShowFormationModalBtn();
@@ -839,17 +846,21 @@ function startMobileApp(table) {
   listenMobilePassword();
   listenEyePasswordModal();
   replaceOnActionInFormsGeneratedWithJS();
+  // cleanAllSelectedPlayerInTable();
+  loadPlayerAlreadySelected();
 }
 function getQueryParams() {
-  var urlParams = new URLSearchParams(window.location.url);
+  var urlString = window.location.href;
+  // Create a URL object
+  var url = new URL(urlString);
+  // Get the value of the "Fsq" parameter
+  var teamSelectedValue = url.searchParams.get("Fsq");
+  var daySelectedValue = url.searchParams.get("Gio");
 
-  // Get individual query parameters
-  var fsq = urlParams.get("Fsq");
-  var gio = urlParams.get("Gio");
-  var invia = urlParams.get("Invia");
-
-  return { teamSelected: fsq, daySelected: gio };
+  return { teamSelected: teamSelectedValue, daySelected: daySelectedValue };
 }
+// when user select team and day the page is recharge
+// with this we keep the selection
 function selectTeamAndDaySelectedPreviouslyOnSearch() {
   const selectedValues = getQueryParams();
   document.querySelector(`#team-name-select`).value =
@@ -866,11 +877,118 @@ function replaceOnActionInFormsGeneratedWithJS() {
   );
 }
 
+function clickOnVai(team, day) {
+  console.log({ team });
+  console.log({ day });
+  document.querySelector("#Fsq").value = `${team}`;
+  document.querySelector("#Gio").value = `${day}`;
+  document.getElementById(`Invia`).click();
+  presentAlert({ header: "Formazione Inviata", buttons: ["OK"] });
+}
+
+function onclickGoButton() {
+  console.log(`click`);
+  const teamValue = document.getElementById(`team-name-select`).value;
+  const matchDayValue = document.getElementById(`match-day-select`).value;
+  console.log(`teamName ${teamValue} matchDayValue ${matchDayValue}`);
+  clickOnVai(teamValue, matchDayValue);
+}
+function showTimer() {
+  intervalRemainingTimeId = setInterval(displayRemainingTime, 1000);
+}
+function displayRemainingTime() {
+  if (
+    !termineInvio ||
+    !termineInvio.dataOraTermine ||
+    !termineInvio.offsetServer
+  ) {
+    console.warn("termineInvio not present", termineInvio);
+    return;
+  }
+  let text;
+  let s =
+    (termineInvio.dataOraTermine - new Date() - termineInvio.offsetServer) /
+    1000;
+  if (s > 0) {
+    let gg = (s / 86400) | 0;
+    let hh = ((s % 86400) / 3600) | 0;
+    let mm = ((s % 3600) / 60) | 0;
+    let ss = s % 60 | 0;
+    text = gg > 0 ? gg + " Giorni " : "";
+    text +=
+      (hh < 10 ? "0" : "") +
+      hh +
+      ":" +
+      (mm < 10 ? "0" : "") +
+      mm +
+      ":" +
+      (ss < 10 ? "0" : "") +
+      ss;
+  } else {
+    text = "Termine invio scaduto";
+    intervalRemainingTimeId && clearInterval(intervalRemainingTimeId);
+  }
+  let el = document.getElementById("remainning-time");
+  el.innerText = text;
+}
+
+// deselect all player in web version
+function cleanAllSelectedPlayerInTable() {
+  InizializzaFormazione();
+}
+function devMode() {
+  console.log("dev mode");
+  var element = document.querySelector("body > ion-app"); // Replace "yourElementId" with the actual ID of your element
+  element.classList.remove("ion-page");
+  element.classList.add("ion-page-dev");
+  let body = document.querySelector("body");
+  body.style = body.style + ";display: flex;";
+}
+
+function loadPlayerAlreadySelected() {
+  let isLineUpSelectedPreviously = arrFormazioni.length > 0;
+  if (!isLineUpSelectedPreviously) {
+    // no player selected for current day
+    return;
+  }
+  for (let i = 0; i < arrFormazioni.length; i++) {
+    const playerPreviouslySelected = arrFormazioni[i];
+    if (playerPreviouslySelected == null) {
+      // for any weird reason the array is starting at 1 and not 0
+      continue;
+    }
+    const hasSameNameRole = (playerInFormation, playerPrevSelected) =>
+      playerInFormation.name.trim() === playerPrevSelected.Nome.trim() &&
+      playerInFormation.teamPlayerName.trim() ===
+        playerPrevSelected.SquadraDiA.trim();
+    const playersFound = players.filter((p) =>
+      hasSameNameRole(p, playerPreviouslySelected)
+    );
+    if (playersFound > 2) {
+      console.log(
+        "More than two players with same name and role",
+        playersFound
+      );
+      // clean formation
+      return;
+    }
+    let playerFound = playersFound[0];
+    const areAllPlayerInLineUpAdded = startingLineUp.length === 11;
+    if (!areAllPlayerInLineUpAdded) {
+      addPlayerToLineUp(playerFound, false);
+    } else {
+      console.log("add it in the reserve array", playerFound);
+    }
+    // show it as selected in html
+
+    console.log("player found", playersFound);
+  }
+}
+
 function onLoad() {
   console.log("loaded");
   addMobileVersion();
   listenHeaderPage();
-
   displayTeamNames();
   displayMatchDays();
   listenMatchDay();
@@ -890,27 +1008,21 @@ function onLoad() {
     }
   }
 }
-function clickOnVai(team, day) {
-  console.log({ team });
-  console.log({ day });
-  document.querySelector("#Fsq").value = `${team}`;
-  document.querySelector("#Gio").value = `${day}`;
-  document.getElementById(`Invia`).click();
-}
-function onclickGoButton() {
-  console.log(`click`);
-  const teamValue = document.getElementById(`team-name-select`).value;
-  const matchDayValue = document.getElementById(`match-day-select`).value;
-  console.log(`teamName ${teamValue} matchDayValue ${matchDayValue}`);
-  clickOnVai(teamValue, matchDayValue);
-}
-function devMode() {
-  var element = document.querySelector("body > ion-app"); // Replace "yourElementId" with the actual ID of your element
-  element.classList.remove("ion-page");
-  element.classList.add("ion-page-dev");
-  let body = document.querySelector("body");
-  body.style = body.style + ";display: flex;";
-}
+/**
+ * Selected player are in variable: 
+  arrFormazioni : [{
+    "IDIncontro": 26,
+    "IDSquadra": 3,
+    "IDLega": 0,
+    "Nome": "ARESTI Simone",
+    "SquadraDiA": "Cagliari",
+    "Ruolo": 1,
+    "Pos": 0,
+    "Rig": 0
+  }]
+ * 
+ */
+
 window.addEventListener("DOMContentLoaded", function () {
   onLoad();
 });
