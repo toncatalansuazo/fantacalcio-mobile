@@ -1044,8 +1044,7 @@ function sortReservePlayerUsingPreviousSelection(
   reservePlayers[currentPositionInReserve] = tmpCopyOfPlayerToMoveBackInArray;
 }
 
-function sendFormationMobileVersion() {
-  // Non invia la formazione se nessun incontro è stato selezionato
+function checkMatchesSelectedFantacalcioVersion() {
   var incontriSelezionati = 0;
   for (var i = 1; i <= incontriDisponibili.length; ++i)
     if (document.getElementById("incontro" + i).checked) incontriSelezionati++;
@@ -1056,6 +1055,10 @@ function sendFormationMobileVersion() {
     });
     return false;
   }
+}
+
+function sendFormationMobileVersion() {
+  checkMatchesSelectedFantacalcioVersion();
 
   // Non invia la formazione se non è corretta
   if (!checkFormationMobileVersion()) return false;
